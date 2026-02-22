@@ -1,0 +1,648 @@
+{
+  "name": "Stehen",
+  "entries": [
+    {
+      "word": "aufstehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Ich",
+              "is_target": false
+            },
+            {
+              "text": "stehe",
+              "is_target": true
+            },
+            {
+              "text": "jeden Morgen um sechs Uhr",
+              "is_target": false
+            },
+            {
+              "text": "auf",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "I get up every morning at six o'clock."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Heute",
+              "is_target": false
+            },
+            {
+              "text": "bin",
+              "is_target": true
+            },
+            {
+              "text": "ich spät",
+              "is_target": false
+            },
+            {
+              "text": "aufgestanden",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Today I got up late."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Du musst morgen früh",
+              "is_target": false
+            },
+            {
+              "text": "aufstehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "You have to get up early tomorrow."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Nach dem Sturz konnte er nicht sofort wieder",
+              "is_target": false
+            },
+            {
+              "text": "aufstehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "After the fall, he couldn't get up again immediately."
+        }
+      ]
+    },
+    {
+      "word": "zustehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Das Geld ",
+              "is_target": false
+            },
+            {
+              "text": "steht",
+              "is_target": true
+            },
+            {
+              "text": " ihm ",
+              "is_target": false
+            },
+            {
+              "text": "zu",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The money is due to him."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Jeder Person sollte ein fairer Lohn ",
+              "is_target": false
+            },
+            {
+              "text": "zustehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Every person should be entitled to a fair wage."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Uns ",
+              "is_target": false
+            },
+            {
+              "text": "steht",
+              "is_target": true
+            },
+            {
+              "text": " eine Pause ",
+              "is_target": false
+            },
+            {
+              "text": "zu",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "We are entitled to a break."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Diese Leistung ",
+              "is_target": false
+            },
+            {
+              "text": "steht",
+              "is_target": true
+            },
+            {
+              "text": " jedem Bürger ",
+              "is_target": false
+            },
+            {
+              "text": "zu",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "This service is available to every citizen."
+        }
+      ]
+    },
+    {
+      "word": "überstehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Wir",
+              "is_target": false
+            },
+            {
+              "text": "müssen",
+              "is_target": false
+            },
+            {
+              "text": "diese",
+              "is_target": false
+            },
+            {
+              "text": "schwierige",
+              "is_target": false
+            },
+            {
+              "text": "Zeit",
+              "is_target": false
+            },
+            {
+              "text": "überstehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "We have to get through this difficult time."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er",
+              "is_target": false
+            },
+            {
+              "text": "hat",
+              "is_target": true
+            },
+            {
+              "text": "die",
+              "is_target": false
+            },
+            {
+              "text": "Operation",
+              "is_target": false
+            },
+            {
+              "text": "gut",
+              "is_target": false
+            },
+            {
+              "text": "überstanden",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He survived the operation well."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Das",
+              "is_target": false
+            },
+            {
+              "text": "kleine",
+              "is_target": false
+            },
+            {
+              "text": "Boot",
+              "is_target": false
+            },
+            {
+              "text": "konnte",
+              "is_target": false
+            },
+            {
+              "text": "den",
+              "is_target": false
+            },
+            {
+              "text": "Sturm",
+              "is_target": false
+            },
+            {
+              "text": "überstehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The small boat was able to endure the storm."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Eine",
+              "is_target": false
+            },
+            {
+              "text": "Beziehung",
+              "is_target": false
+            },
+            {
+              "text": "muss",
+              "is_target": false
+            },
+            {
+              "text": "auch",
+              "is_target": false
+            },
+            {
+              "text": "schwierige",
+              "is_target": false
+            },
+            {
+              "text": "Phasen",
+              "is_target": false
+            },
+            {
+              "text": "überstehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "A relationship also has to overcome difficult phases."
+        }
+      ]
+    },
+    {
+      "word": "einstehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Ich kann nicht für seine Schulden",
+              "is_target": false
+            },
+            {
+              "text": "einstehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "I cannot be responsible for his debts."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Wer",
+              "is_target": false
+            },
+            {
+              "text": "steht",
+              "is_target": true
+            },
+            {
+              "text": "für die Schäden",
+              "is_target": false
+            },
+            {
+              "text": "ein",
+              "is_target": true
+            },
+            {
+              "text": "?",
+              "is_target": false
+            }
+          ],
+          "english": "Who will be responsible for the damages?"
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er",
+              "is_target": false
+            },
+            {
+              "text": "stand",
+              "is_target": true
+            },
+            {
+              "text": "stets für seine Freunde",
+              "is_target": false
+            },
+            {
+              "text": "ein",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He always stood up for his friends."
+        }
+      ]
+    },
+    {
+      "word": "gestehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Er",
+              "is_target": false
+            },
+            {
+              "text": "musste",
+              "is_target": false
+            },
+            {
+              "text": "seinen",
+              "is_target": false
+            },
+            {
+              "text": "Fehler",
+              "is_target": false
+            },
+            {
+              "text": "gestehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He had to confess his mistake."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Sie",
+              "is_target": false
+            },
+            {
+              "text": "gestand",
+              "is_target": true
+            },
+            {
+              "text": ",",
+              "is_target": false
+            },
+            {
+              "text": "dass",
+              "is_target": false
+            },
+            {
+              "text": "sie",
+              "is_target": false
+            },
+            {
+              "text": "die",
+              "is_target": false
+            },
+            {
+              "text": "Antwort",
+              "is_target": false
+            },
+            {
+              "text": "nicht",
+              "is_target": false
+            },
+            {
+              "text": "wusste",
+              "is_target": false
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "She confessed that she didn't know the answer."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Ich",
+              "is_target": false
+            },
+            {
+              "text": "muss",
+              "is_target": false
+            },
+            {
+              "text": "gestehen",
+              "is_target": true
+            },
+            {
+              "text": ",",
+              "is_target": false
+            },
+            {
+              "text": "ich",
+              "is_target": false
+            },
+            {
+              "text": "bin",
+              "is_target": false
+            },
+            {
+              "text": "etwas",
+              "is_target": false
+            },
+            {
+              "text": "müde",
+              "is_target": false
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "I must confess, I'm a bit tired."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er",
+              "is_target": false
+            },
+            {
+              "text": "hat",
+              "is_target": true
+            },
+            {
+              "text": "das",
+              "is_target": false
+            },
+            {
+              "text": "Verbrechen",
+              "is_target": false
+            },
+            {
+              "text": "endlich",
+              "is_target": false
+            },
+            {
+              "text": "gestanden",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He finally confessed to the crime."
+        }
+      ]
+    },
+    {
+      "word": "entstehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Wie konnte dieser Fehler",
+              "is_target": false
+            },
+            {
+              "text": "entstehen",
+              "is_target": true
+            },
+            {
+              "text": "?",
+              "is_target": false
+            }
+          ],
+          "english": "How could this mistake arise?"
+        },
+        {
+          "fragments": [
+            {
+              "text": "Aus der Zusammenarbeit sollen neue Ideen",
+              "is_target": false
+            },
+            {
+              "text": "entstehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "New ideas should emerge from the collaboration."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Im Laufe der Zeit können tiefe Freundschaften",
+              "is_target": false
+            },
+            {
+              "text": "entstehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Over time, deep friendships can develop."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Durch den starken Regen",
+              "is_target": false
+            },
+            {
+              "text": "sind",
+              "is_target": true
+            },
+            {
+              "text": "überall Pfützen",
+              "is_target": false
+            },
+            {
+              "text": "entstanden",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Puddles have formed everywhere due to the heavy rain."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "name": "Gehen",
+  "entries": [
+    {
+      "word": "zugehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Die Tür",
+              "is_target": false
+            },
+            {
+              "text": "geht",
+              "is_target": true
+            },
+            {
+              "text": "automatisch",
+              "is_target": false
+            },
+            {
+              "text": "zu",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The door closes automatically."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Bei der Party",
+              "is_target": false
+            },
+            {
+              "text": "ging",
+              "is_target": true
+            },
+            {
+              "text": "es richtig lustig",
+              "is_target": false
+            },
+            {
+              "text": "zu",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The party was really fun/lively."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Der Junge",
+              "is_target": false
+            },
+            {
+              "text": "ging",
+              "is_target": true
+            },
+            {
+              "text": "direkt auf seine Mutter",
+              "is_target": false
+            },
+            {
+              "text": "zu",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The boy walked directly towards his mother."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Der Reißverschluss will nicht mehr",
+              "is_target": false
+            },
+            {
+              "text": "zugehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The zipper won't close anymore."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Was",
+              "is_target": false
+            },
+            {
+              "text": "geht",
+              "is_target": true
+            },
+            {
+              "text": "hier eigentlich",
+              "is_target": false
+            },
+            {
+              "text": "zu",
+              "is_target": true
+            },
+            {
+              "text": "?",
+              "is_target": false
+            }
+          ],
+          "english": "What's actually going on here?"
+        },
+        {
+          "fragments": [
+            {
+              "text": "Es muss alles mit rechten Dingen",
+              "is_target": false
+            },
+            {
+              "text": "zugehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Everything must happen fairly/legitimately."
+        }
+      ]
+    }
+  ]
+}

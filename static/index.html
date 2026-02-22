@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vocab — Create practise material</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Solarized Light https://ethanschoonover.com/solarized */
+      --bg: #fdf6e3;
+      --surface: #eee8d5;
+      --border: #ddd6c4;
+      --text: #657b83;
+      --muted: #93a1a1;
+      --accent: #268bd2;
+      --accent-hover: #2aa198;
+      --danger: #dc322f;
+      --danger-hover: #cb4b16;
+      --success: #859900;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    .top-nav {
+      display: flex;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .top-nav a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .top-nav a:hover { color: var(--accent-hover); }
+    .container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
+    h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+
+    .form-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    label { font-size: 0.85rem; color: var(--muted); }
+    select, input[type="text"] {
+      font: inherit;
+      padding: 0.5rem 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      min-width: 140px;
+    }
+    input[type="text"] { flex: 1; min-width: 160px; }
+    select:focus, input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .btn {
+      font: inherit;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fdf6e3;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .btn-ghost:hover { color: var(--text); }
+    .btn-danger { background: var(--danger); color: var(--bg); }
+    .btn-danger:hover { background: var(--danger-hover); }
+
+    .status { margin-bottom: 1rem; font-size: 0.9rem; }
+    .status.error { color: var(--danger); }
+    .status.success { color: var(--success); }
+
+    .sentences { margin-top: 2rem; }
+    .sentences h2 { font-size: 1.1rem; margin-bottom: 1rem; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .card-actions { display: flex; gap: 0.5rem; }
+    .sentence-preview {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      padding: 0.35rem 0;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+    .sentence-preview .target { text-decoration: underline; color: var(--text); }
+    .sentence-fragments {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .fragment-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .fragment-wrap input[type="text"] {
+      flex: 1;
+      min-width: 0;
+      padding: 0.35rem 0.5rem;
+      font-size: 0.95rem;
+    }
+    .fragment-wrap label {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .fragment-wrap label input { width: auto; min-width: auto; }
+    .fragment-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      flex-shrink: 0;
+    }
+    .fragment-actions .btn {
+      padding: 0.25rem 0.35rem;
+      font-size: 0.75rem;
+      min-width: auto;
+    }
+    .english-row label { display: block; font-size: 0.8rem; margin-bottom: 0.25rem; }
+    .english-row input { width: 100%; }
+
+    .save-row { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .save-row .btn { padding: 0.6rem 1.25rem; }
+    .word-ideas-section { margin-bottom: 1rem; }
+    .word-ideas-section label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.25rem; }
+    .word-ideas-hint { font-size: 0.85rem; color: var(--muted); margin: 0 0 0.5rem 0; }
+    .suggested-words { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; min-height: 1.5rem; }
+    .suggested-words .word-chip {
+      font: inherit;
+      padding: 0.3rem 0.6rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .suggested-words .word-chip:hover { border-color: var(--accent); background: rgba(38, 139, 210, 0.12); }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="/">Create</a>
+    <a href="/practise.html">Practise</a>
+  </nav>
+  <div class="container">
+    <h1>Vocab — Create practise material</h1>
+    <p class="sub">Admin: work in units (e.g. a chapter). Load a unit or name a new one, generate sentences per word, then save.</p>
+
+    <div class="form-row">
+      <label for="unit-name">Unit name</label>
+      <input type="text" id="unit-name" placeholder="e.g. Chapter 5" />
+      <label for="load-unit">Load unit</label>
+      <select id="load-unit">
+        <option value="">—</option>
+      </select>
+    </div>
+    <div class="word-ideas-section">
+      <label for="word-ideas-desc">Word ideas</label>
+      <p class="word-ideas-hint">Describe the kind of words you want (e.g. &ldquo;root stehen, but with various different prefixes&rdquo;). We&rsquo;ll suggest words; click one to generate sentences.</p>
+      <div class="form-row">
+        <input type="text" id="word-ideas-desc" placeholder="e.g. root stehen with various prefixes" style="flex: 1; min-width: 200px;" />
+        <button type="button" class="btn btn-ghost" id="suggest-words">Suggest words</button>
+      </div>
+      <div id="suggested-words" class="suggested-words"></div>
+    </div>
+    <div class="form-row">
+      <label for="lang">Language</label>
+      <select id="lang">
+        <option value="french">French</option>
+        <option value="german">German</option>
+      </select>
+      <label for="word">Word</label>
+      <input type="text" id="word" placeholder="e.g. chien, aufstehen" />
+      <button type="button" class="btn btn-primary" id="generate">Generate sentences</button>
+    </div>
+    <div id="word-selector-row" class="form-row" hidden>
+      <label for="word-select">Word in unit</label>
+      <select id="word-select"></select>
+    </div>
+    <div id="status" class="status" aria-live="polite"></div>
+
+    <div id="sentences-section" class="sentences" hidden>
+      <h2>Sentences</h2>
+      <div id="sentences-list"></div>
+      <div class="form-row">
+        <button type="button" class="btn btn-ghost" id="add-new">+ Add new sentence</button>
+      </div>
+      <div class="save-row">
+        <button type="button" class="btn btn-primary" id="save">Save unit</button>
+        <span id="save-result" class="status" style="margin-left: 0.75rem;"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const unitNameEl = document.getElementById('unit-name');
+    const loadUnitEl = document.getElementById('load-unit');
+    const wordIdeasDescEl = document.getElementById('word-ideas-desc');
+    const suggestWordsBtn = document.getElementById('suggest-words');
+    const suggestedWordsEl = document.getElementById('suggested-words');
+    const wordSelectEl = document.getElementById('word-select');
+    const wordSelectorRow = document.getElementById('word-selector-row');
+    const langEl = document.getElementById('lang');
+    const wordEl = document.getElementById('word');
+    const generateBtn = document.getElementById('generate');
+    const statusEl = document.getElementById('status');
+    const sectionEl = document.getElementById('sentences-section');
+    const listEl = document.getElementById('sentences-list');
+    const addNewBtn = document.getElementById('add-new');
+    const saveBtn = document.getElementById('save');
+    const saveResultEl = document.getElementById('save-result');
+
+    let state = {
+      unitName: '',
+      unitSlug: null,
+      entries: [],
+      selectedEntryIndex: 0
+    };
+
+    function currentEntry() {
+      return state.entries[state.selectedEntryIndex] || null;
+    }
+    function currentSentences() {
+      const e = currentEntry();
+      return e ? e.sentences : [];
+    }
+
+    function setStatus(msg, type = '') {
+      statusEl.textContent = msg;
+      statusEl.className = 'status' + (type ? ' ' + type : '');
+    }
+
+    function setSaveResult(msg, type = '') {
+      saveResultEl.textContent = msg;
+      saveResultEl.className = 'status' + (type ? ' ' + type : '');
+    }
+
+    function emptySentence() {
+      return { fragments: [{ text: '', is_target: true }], english: '' };
+    }
+
+    function renderFragment(frag, fragIndex, cardIndex, fragCount) {
+      const wrap = document.createElement('div');
+      wrap.className = 'fragment-wrap';
+
+      const actions = document.createElement('div');
+      actions.className = 'fragment-actions';
+
+      const moveUp = document.createElement('button');
+      moveUp.type = 'button';
+      moveUp.className = 'btn btn-ghost';
+      moveUp.textContent = '\u2191';
+      moveUp.title = 'Move up';
+      moveUp.disabled = fragIndex === 0;
+      moveUp.addEventListener('click', () => {
+        updateStateFromList();
+        const sent = currentSentences();
+        if (cardIndex >= sent.length) return;
+        const frags = sent[cardIndex].fragments.slice();
+        if (fragIndex > 0) {
+          [frags[fragIndex - 1], frags[fragIndex]] = [frags[fragIndex], frags[fragIndex - 1]];
+          sent[cardIndex] = { ...sent[cardIndex], fragments: frags };
+          renderSentencesList();
+        }
+      });
+
+      const moveDown = document.createElement('button');
+      moveDown.type = 'button';
+      moveDown.className = 'btn btn-ghost';
+      moveDown.textContent = '\u2193';
+      moveDown.title = 'Move down';
+      moveDown.disabled = fragIndex === fragCount - 1;
+      moveDown.addEventListener('click', () => {
+        updateStateFromList();
+        const sent = currentSentences();
+        if (cardIndex >= sent.length) return;
+        const frags = sent[cardIndex].fragments.slice();
+        if (fragIndex < fragCount - 1) {
+          [frags[fragIndex], frags[fragIndex + 1]] = [frags[fragIndex + 1], frags[fragIndex]];
+          sent[cardIndex] = { ...sent[cardIndex], fragments: frags };
+          renderSentencesList();
+        }
+      });
+
+      const addBefore = document.createElement('button');
+      addBefore.type = 'button';
+      addBefore.className = 'btn btn-ghost';
+      addBefore.textContent = '+\u2191';
+      addBefore.title = 'Add fragment before this one';
+      addBefore.addEventListener('click', () => {
+        updateStateFromList();
+        const sent = currentSentences();
+        if (cardIndex >= sent.length) return;
+        const frags = sent[cardIndex].fragments.slice();
+        frags.splice(fragIndex, 0, { text: '', is_target: false });
+        sent[cardIndex] = { ...sent[cardIndex], fragments: frags };
+        renderSentencesList();
+      });
+
+      const addAfter = document.createElement('button');
+      addAfter.type = 'button';
+      addAfter.className = 'btn btn-ghost';
+      addAfter.textContent = '+\u2193';
+      addAfter.title = 'Add fragment after this one';
+      addAfter.addEventListener('click', () => {
+        updateStateFromList();
+        const sent = currentSentences();
+        if (cardIndex >= sent.length) return;
+        const frags = sent[cardIndex].fragments.slice();
+        frags.splice(fragIndex + 1, 0, { text: '', is_target: false });
+        sent[cardIndex] = { ...sent[cardIndex], fragments: frags };
+        renderSentencesList();
+      });
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'btn btn-ghost';
+      removeBtn.textContent = '\u00d7';
+      removeBtn.title = 'Remove fragment';
+      removeBtn.disabled = fragCount <= 1;
+      removeBtn.addEventListener('click', () => {
+        updateStateFromList();
+        if (fragCount <= 1) return;
+        const sent = currentSentences();
+        if (cardIndex >= sent.length) return;
+        const frags = sent[cardIndex].fragments.slice();
+        frags.splice(fragIndex, 1);
+        sent[cardIndex] = { ...sent[cardIndex], fragments: frags };
+        renderSentencesList();
+      });
+
+      actions.appendChild(moveUp);
+      actions.appendChild(moveDown);
+      actions.appendChild(addBefore);
+      actions.appendChild(addAfter);
+      actions.appendChild(removeBtn);
+      wrap.appendChild(actions);
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = frag.text;
+      input.placeholder = 'fragment';
+      input.dataset.cardIndex = String(cardIndex);
+      input.dataset.fragIndex = String(fragIndex);
+      input.dataset.field = 'text';
+      const label = document.createElement('label');
+      const check = document.createElement('input');
+      check.type = 'checkbox';
+      check.checked = frag.is_target;
+      check.dataset.cardIndex = String(cardIndex);
+      check.dataset.fragIndex = String(fragIndex);
+      check.dataset.field = 'is_target';
+      label.appendChild(check);
+      label.appendChild(document.createTextNode(' target'));
+      wrap.appendChild(input);
+      wrap.appendChild(label);
+      return wrap;
+    }
+
+    function collectCard(cardEl) {
+      const cardIndex = parseInt(cardEl.dataset.index, 10);
+      const fragWraps = cardEl.querySelectorAll('.fragment-wrap');
+      const fragments = [];
+      fragWraps.forEach((wrap, i) => {
+        const textInput = wrap.querySelector('input[type="text"]');
+        const targetCheck = wrap.querySelector('input[type="checkbox"]');
+        fragments.push({
+          text: textInput.value.trim(),
+          is_target: targetCheck.checked
+        });
+      });
+      const englishInput = cardEl.querySelector('.english-row input');
+      return { fragments, english: englishInput ? englishInput.value.trim() : '' };
+    }
+
+    function collectAll() {
+      const cards = listEl.querySelectorAll('.card');
+      return Array.from(cards).map(card => collectCard(card));
+    }
+
+    function updateStateFromList() {
+      const e = currentEntry();
+      if (e) e.sentences = collectAll();
+    }
+
+    function needsSpaceBetween(prevText, nextText) {
+      if (!prevText.length || !nextText.length) return false;
+      const last = prevText.slice(-1);
+      const first = nextText[0];
+      return !/\s/.test(last) && !/\s/.test(first);
+    }
+
+    function updatePreview(cardEl) {
+      const pair = collectCard(cardEl);
+      const previewEl = cardEl.querySelector('.sentence-preview');
+      if (!previewEl) return;
+      const fragments = pair.fragments;
+      const parts = fragments.map(f => {
+        const t = f.text === '' ? '\u00a0' : f.text;
+        return f.is_target ? '<span class="target">' + escapeHtml(t) + '</span>' : escapeHtml(t);
+      });
+      let html = parts[0] || '';
+      for (let i = 1; i < parts.length; i++) {
+        if (needsSpaceBetween(fragments[i - 1].text, fragments[i].text)) html += ' ';
+        html += parts[i];
+      }
+      previewEl.innerHTML = html;
+    }
+
+    function escapeHtml(s) {
+      const div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML;
+    }
+
+    function renderCard(pair, index) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.dataset.index = String(index);
+      const header = document.createElement('div');
+      header.className = 'card-header';
+      header.innerHTML = '<span class="card-title">Sentence ' + (index + 1) + '</span>';
+      const actions = document.createElement('div');
+      actions.className = 'card-actions';
+      const rejectBtn = document.createElement('button');
+      rejectBtn.type = 'button';
+      rejectBtn.className = 'btn btn-ghost';
+      rejectBtn.textContent = 'Reject';
+      rejectBtn.addEventListener('click', () => {
+        updateStateFromList();
+        const idx = parseInt(card.dataset.index, 10);
+        const sent = currentSentences();
+        if (idx >= 0 && idx < sent.length) {
+          sent.splice(idx, 1);
+          renderSentencesList();
+        }
+      });
+      const copyBtn = document.createElement('button');
+      copyBtn.type = 'button';
+      copyBtn.className = 'btn btn-ghost';
+      copyBtn.textContent = 'Copy';
+      copyBtn.addEventListener('click', () => {
+        updateStateFromList();
+        const collected = collectCard(card);
+        currentSentences().splice(index + 1, 0, collected);
+        renderSentencesList();
+      });
+      actions.appendChild(rejectBtn);
+      actions.appendChild(copyBtn);
+      header.appendChild(actions);
+      card.appendChild(header);
+
+      const previewDiv = document.createElement('div');
+      previewDiv.className = 'sentence-preview';
+      previewDiv.setAttribute('aria-label', 'Full sentence preview (target parts underlined)');
+      card.appendChild(previewDiv);
+
+      const fragsDiv = document.createElement('div');
+      fragsDiv.className = 'sentence-fragments';
+      const fragCount = pair.fragments.length;
+      pair.fragments.forEach((f, fi) => fragsDiv.appendChild(renderFragment(f, fi, index, fragCount)));
+      card.appendChild(fragsDiv);
+
+      const englishRow = document.createElement('div');
+      englishRow.className = 'english-row';
+      englishRow.innerHTML = '<label>English</label>';
+      const englishInput = document.createElement('input');
+      englishInput.type = 'text';
+      englishInput.value = pair.english;
+      englishInput.placeholder = 'English translation';
+      englishInput.dataset.cardIndex = String(index);
+      englishInput.dataset.field = 'english';
+      englishRow.appendChild(englishInput);
+      card.appendChild(englishRow);
+
+      updatePreview(card);
+
+      card.addEventListener('input', () => { updateStateFromList(); updatePreview(card); });
+      card.addEventListener('change', () => { updateStateFromList(); updatePreview(card); });
+
+      return card;
+    }
+
+    function reindexCards() {
+      listEl.querySelectorAll('.card').forEach((card, i) => {
+        card.dataset.index = String(i);
+        const title = card.querySelector('.card-title');
+        if (title) title.textContent = 'Sentence ' + (i + 1);
+        card.querySelectorAll('[data-card-index]').forEach(el => { el.dataset.cardIndex = String(i); });
+      });
+    }
+
+    function slugify(name) {
+      return name.toLowerCase().trim().replace(/[^a-z0-9\u00c0-\u024f]+/g, '-').replace(/^-|-$/g, '') || 'unit';
+    }
+
+    function renderWordSelector() {
+      wordSelectEl.innerHTML = '';
+      state.entries.forEach((entry, i) => {
+        const opt = document.createElement('option');
+        opt.value = String(i);
+        opt.textContent = entry.word + ' (' + entry.target_language + ')';
+        if (i === state.selectedEntryIndex) opt.selected = true;
+        wordSelectEl.appendChild(opt);
+      });
+      wordSelectorRow.hidden = state.entries.length === 0;
+      if (state.entries.length > 0 && state.selectedEntryIndex >= state.entries.length) {
+        state.selectedEntryIndex = 0;
+      }
+    }
+
+    function renderSentencesList() {
+      listEl.innerHTML = '';
+      currentSentences().forEach((pair, i) => listEl.appendChild(renderCard(pair, i)));
+    }
+
+    async function doGenerate(word, target_language) {
+      if (!word) {
+        setStatus('Enter a word.', 'error');
+        return;
+      }
+      setStatus('Generating…');
+      generateBtn.disabled = true;
+      try {
+        const res = await fetch('/vocab/sentences', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ word, target_language })
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.detail || res.statusText);
+        }
+        const data = await res.json();
+        const existing = state.entries.findIndex(e => e.word === word && e.target_language === target_language);
+        if (existing >= 0) {
+          state.entries[existing].sentences.push(...data.sentences);
+          state.selectedEntryIndex = existing;
+        } else {
+          state.entries.push({ word, target_language, sentences: data.sentences });
+          state.selectedEntryIndex = state.entries.length - 1;
+        }
+        renderWordSelector();
+        renderSentencesList();
+        sectionEl.hidden = false;
+        wordSelectorRow.hidden = false;
+        setStatus('');
+      } catch (e) {
+        setStatus(e.message || 'Request failed', 'error');
+      } finally {
+        generateBtn.disabled = false;
+      }
+    }
+
+    generateBtn.addEventListener('click', () => {
+      doGenerate(wordEl.value.trim(), langEl.value);
+    });
+
+    suggestWordsBtn.addEventListener('click', async () => {
+      const description = wordIdeasDescEl.value.trim();
+      if (!description) {
+        setStatus('Describe the kind of words you want.', 'error');
+        return;
+      }
+      setStatus('Suggesting words…');
+      suggestWordsBtn.disabled = true;
+      suggestedWordsEl.innerHTML = '';
+      try {
+        const res = await fetch('/vocab/suggest-words', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ description, target_language: langEl.value })
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.detail || res.statusText);
+        }
+        const data = await res.json();
+        setStatus('');
+        suggestedWordsEl.innerHTML = '';
+        (data.words || []).forEach(w => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'word-chip';
+          chip.textContent = w;
+          chip.addEventListener('click', () => {
+            wordEl.value = w;
+            doGenerate(w, langEl.value);
+          });
+          suggestedWordsEl.appendChild(chip);
+        });
+      } catch (e) {
+        setStatus(e.message || 'Suggest failed', 'error');
+      } finally {
+        suggestWordsBtn.disabled = false;
+      }
+    });
+
+    addNewBtn.addEventListener('click', () => {
+      if (!currentEntry()) {
+        const word = wordEl.value.trim() || 'New';
+        const target_language = langEl.value;
+        state.entries.push({ word, target_language, sentences: [emptySentence()] });
+        state.selectedEntryIndex = state.entries.length - 1;
+        renderWordSelector();
+      } else {
+        currentSentences().push(emptySentence());
+      }
+      renderSentencesList();
+      sectionEl.hidden = false;
+      wordSelectorRow.hidden = false;
+    });
+
+    saveBtn.addEventListener('click', async () => {
+      updateStateFromList();
+      const unitName = unitNameEl.value.trim();
+      if (!unitName) {
+        setSaveResult('Enter a unit name.', 'error');
+        return;
+      }
+      const entries = state.entries.map(e => ({
+        word: e.word,
+        target_language: e.target_language,
+        sentences: e.sentences.filter(s =>
+          s.fragments.some(f => f.is_target) && s.fragments.some(f => f.text.trim() !== '')
+        )
+      }));
+      setSaveResult('Saving…');
+      try {
+        const res = await fetch('/vocab/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ unit_name: unitName, entries })
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.detail || res.statusText);
+        }
+        const data = await res.json();
+        state.unitSlug = slugify(unitName);
+        setSaveResult('Saved: ' + data.path, 'success');
+      } catch (e) {
+        setSaveResult(e.message || 'Save failed', 'error');
+      }
+    });
+
+    loadUnitEl.addEventListener('change', async () => {
+      const slug = loadUnitEl.value;
+      if (!slug) return;
+      try {
+        const res = await fetch('/vocab/units/' + encodeURIComponent(slug));
+        if (!res.ok) throw new Error('Failed to load unit');
+        const unit = await res.json();
+        state.unitName = unit.name;
+        state.unitSlug = slug;
+        state.entries = unit.entries || [];
+        state.selectedEntryIndex = state.entries.length > 0 ? 0 : 0;
+        unitNameEl.value = unit.name;
+        loadUnitEl.value = slug;
+        renderWordSelector();
+        renderSentencesList();
+        sectionEl.hidden = state.entries.length === 0;
+        wordSelectorRow.hidden = state.entries.length === 0;
+      } catch (e) {
+        setStatus(e.message || 'Load failed', 'error');
+      }
+    });
+
+    wordSelectEl.addEventListener('change', () => {
+      updateStateFromList();
+      state.selectedEntryIndex = parseInt(wordSelectEl.value, 10) || 0;
+      renderSentencesList();
+    });
+
+    (async function loadUnitsList() {
+      try {
+        const res = await fetch('/vocab/units');
+        if (!res.ok) return;
+        const list = await res.json();
+        loadUnitEl.innerHTML = '<option value="">—</option>';
+        list.forEach(u => {
+          const opt = document.createElement('option');
+          opt.value = u.slug;
+          opt.textContent = u.name;
+          loadUnitEl.appendChild(opt);
+        });
+      } catch (_) {}
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vocab — Practise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Solarized Light https://ethanschoonover.com/solarized */
+      --bg: #fdf6e3;
+      --surface: #eee8d5;
+      --border: #ddd6c4;
+      --text: #657b83;
+      --muted: #93a1a1;
+      --accent: #268bd2;
+      --accent-hover: #2aa198;
+      --danger: #dc322f;
+      --success: #859900;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    .top-nav {
+      display: flex;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .top-nav a { color: var(--muted); text-decoration: none; font-weight: 500; }
+    .top-nav a:hover { color: var(--text); }
+    .top-nav a.active { color: var(--accent); }
+    .container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
+    h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    label { font-size: 0.85rem; color: var(--muted); }
+    select, input[type="text"] {
+      font: inherit;
+      padding: 0.5rem 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+    }
+    select:focus, input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .btn {
+      font: inherit;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      background: var(--accent);
+      color: #fdf6e3;
+    }
+    .btn:hover { background: var(--accent-hover); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .form-row { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .practice-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .practice-card .english { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .practice-card .foreign { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; }
+    .practice-card .foreign .gap {
+      min-width: 8rem;
+      padding: 0.4rem 0.5rem;
+      font-size: 1rem;
+    }
+    .practice-card .foreign .text { font-size: 1rem; }
+    .submit-row { margin-top: 1.5rem; }
+    .result-feedback { font-size: 0.9rem; margin-top: 0.35rem; }
+    .result-feedback.correct { color: var(--success); }
+    .result-feedback.incorrect { color: var(--danger); }
+    .result-feedback .expected { color: var(--muted); }
+    .next-hint { color: var(--muted); font-size: 0.9rem; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="/">Create</a>
+    <a href="/practise.html" class="active">Practise</a>
+  </nav>
+  <div class="container">
+    <h1>Vocab — Practise</h1>
+    <p class="sub">Choose a unit and fill in the missing words. Tab through the blanks, then Submit. After reviewing, press Enter for the next set.</p>
+
+    <div class="form-row">
+      <label for="unit-select">Unit</label>
+      <select id="unit-select">
+        <option value="">— Select unit —</option>
+      </select>
+    </div>
+
+    <div id="no-unit" class="sub">Select a unit to load its sentences.</div>
+    <div id="practice-area" hidden>
+      <div id="questions-container"></div>
+      <div class="submit-row">
+        <button type="button" class="btn" id="submit-btn">Submit</button>
+      </div>
+    </div>
+    <div id="result-area" hidden>
+      <div id="result-container"></div>
+      <p class="next-hint">Press Enter for next 5 questions.</p>
+    </div>
+  </div>
+
+  <script>
+    const unitSelectEl = document.getElementById('unit-select');
+    const noUnitEl = document.getElementById('no-unit');
+    const practiceAreaEl = document.getElementById('practice-area');
+    const questionsContainerEl = document.getElementById('questions-container');
+    const submitBtn = document.getElementById('submit-btn');
+    const resultAreaEl = document.getElementById('result-area');
+    const resultContainerEl = document.getElementById('result-container');
+
+    let unit = null;
+    let allQuestions = [];
+    let sessionStats = {};
+    let currentSet = [];
+    let tabIndexCounter = 1;
+
+    function flattenUnit(unitData) {
+      const list = [];
+      (unitData.entries || []).forEach((entry, ei) => {
+        (entry.sentences || []).forEach((sent, si) => {
+          const targetFragments = sent.fragments.filter(f => f.is_target);
+          if (targetFragments.length === 0) return;
+          list.push({
+            id: `${ei}-${si}`,
+            entryIndex: ei,
+            sentenceIndex: si,
+            english: sent.english,
+            fragments: sent.fragments,
+            targetFragments
+          });
+        });
+      });
+      return list;
+    }
+
+    /**
+     * Priority for choosing the next questions. Higher = more likely to be picked.
+     * Tweak this single function to change ranking behaviour.
+     */
+    function getQuestionPriority(question, stats) {
+      const s = stats[question.id] || { attempts: 0, correct: 0 };
+      const FUZZ = 5;
+      const fuzz = Math.random() * FUZZ;
+
+      if (s.attempts === 0) {
+        return 1000 + fuzz;
+      }
+      const correctRate = s.correct / s.attempts;
+      const lowScoreBonus = (1 - correctRate) * 100;
+      const fewAttemptsBonus = 10 / (s.attempts + 1);
+      return lowScoreBonus + fewAttemptsBonus + fuzz;
+    }
+
+    function selectNextQuestions(questions, stats, count) {
+      if (questions.length === 0) return [];
+      const withPriority = questions.map(q => ({ q, p: getQuestionPriority(q, stats) }));
+      withPriority.sort((a, b) => b.p - a.p);
+      return withPriority.slice(0, Math.min(count, questions.length)).map(x => x.q);
+    }
+
+    function renderQuestionView() {
+      resultAreaEl.hidden = true;
+      practiceAreaEl.hidden = false;
+      questionsContainerEl.innerHTML = '';
+      tabIndexCounter = 1;
+
+      currentSet.forEach((q, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'practice-card';
+        card.innerHTML = '<div class="english">' + escapeHtml(q.english) + '</div>';
+        const foreign = document.createElement('div');
+        foreign.className = 'foreign';
+        q.fragments.forEach((frag, fi) => {
+          if (frag.is_target) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'gap';
+            input.placeholder = '…';
+            input.dataset.questionId = q.id;
+            input.dataset.fragIndex = String(fi);
+            input.tabIndex = tabIndexCounter++;
+            foreign.appendChild(input);
+          } else {
+            const span = document.createElement('span');
+            span.className = 'text';
+            span.textContent = frag.text;
+            foreign.appendChild(span);
+          }
+        });
+        card.appendChild(foreign);
+        questionsContainerEl.appendChild(card);
+      });
+
+      submitBtn.tabIndex = tabIndexCounter;
+      const firstInput = questionsContainerEl.querySelector('input.gap');
+      if (firstInput) firstInput.focus();
+    }
+
+    function escapeHtml(s) {
+      const div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML;
+    }
+
+    function gradeAndShowResult() {
+      const results = currentSet.map(q => {
+        const inputs = questionsContainerEl.querySelectorAll(`input[data-question-id="${q.id}"]`);
+        const answers = [];
+        let allCorrect = true;
+        q.fragments.forEach((frag, fi) => {
+          if (!frag.is_target) return;
+          const input = Array.from(inputs).find(inp => inp.dataset.fragIndex === String(fi));
+          const value = input ? input.value.trim() : '';
+          const correct = value === frag.text.trim();
+          if (!correct) allCorrect = false;
+          answers.push({ value, correct, expected: frag.text });
+        });
+        const stat = sessionStats[q.id] || { attempts: 0, correct: 0 };
+        stat.attempts += 1;
+        if (allCorrect) stat.correct += 1;
+        sessionStats[q.id] = stat;
+        return { q, answers, allCorrect };
+      });
+
+      practiceAreaEl.hidden = true;
+      resultAreaEl.hidden = false;
+      resultContainerEl.innerHTML = '';
+
+      results.forEach(({ q, answers, allCorrect }) => {
+        const card = document.createElement('div');
+        card.className = 'practice-card';
+        card.innerHTML = '<div class="english">' + escapeHtml(q.english) + '</div>';
+        const foreign = document.createElement('div');
+        foreign.className = 'foreign';
+        let ai = 0;
+        q.fragments.forEach((frag) => {
+          if (frag.is_target) {
+            const a = answers[ai++];
+            const wrap = document.createElement('span');
+            wrap.className = 'result-feedback ' + (a.correct ? 'correct' : 'incorrect');
+            wrap.textContent = a.value || '(empty)';
+            if (!a.correct) {
+              const exp = document.createElement('span');
+              exp.className = 'expected';
+              exp.textContent = ' → ' + a.expected;
+              wrap.appendChild(exp);
+            }
+            foreign.appendChild(wrap);
+          } else {
+            const span = document.createElement('span');
+            span.className = 'text';
+            span.textContent = frag.text;
+            foreign.appendChild(span);
+          }
+        });
+        card.appendChild(foreign);
+        resultContainerEl.appendChild(card);
+      });
+
+      document.addEventListener('keydown', onResultKeydown);
+    }
+
+    function onResultKeydown(e) {
+      if (e.key !== 'Enter' || e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      e.preventDefault();
+      document.removeEventListener('keydown', onResultKeydown);
+      startNextSet();
+    }
+
+    function startNextSet() {
+      currentSet = selectNextQuestions(allQuestions, sessionStats, 5);
+      if (currentSet.length === 0) {
+        resultAreaEl.hidden = true;
+        noUnitEl.hidden = false;
+        practiceAreaEl.hidden = true;
+        noUnitEl.textContent = 'No more sentences in this unit.';
+        return;
+      }
+      renderQuestionView();
+    }
+
+    submitBtn.addEventListener('click', () => {
+      gradeAndShowResult();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      if (resultAreaEl.hidden === false) return;
+      const active = document.activeElement;
+      if (active === submitBtn) {
+        e.preventDefault();
+        gradeAndShowResult();
+      }
+    });
+
+    unitSelectEl.addEventListener('change', async () => {
+      const slug = unitSelectEl.value;
+      if (!slug) {
+        unit = null;
+        allQuestions = [];
+        noUnitEl.hidden = false;
+        practiceAreaEl.hidden = true;
+        resultAreaEl.hidden = true;
+        noUnitEl.textContent = 'Select a unit to load its sentences.';
+        return;
+      }
+      try {
+        const res = await fetch('/vocab/units/' + encodeURIComponent(slug));
+        if (!res.ok) throw new Error('Failed to load unit');
+        unit = await res.json();
+        allQuestions = flattenUnit(unit);
+        sessionStats = {};
+        noUnitEl.hidden = true;
+        startNextSet();
+      } catch (err) {
+        noUnitEl.textContent = 'Failed to load unit.';
+        noUnitEl.hidden = false;
+      }
+    });
+
+    (async function loadUnits() {
+      try {
+        const res = await fetch('/vocab/units');
+        if (!res.ok) return;
+        const list = await res.json();
+        list.forEach(u => {
+          const opt = document.createElement('option');
+          opt.value = u.slug;
+          opt.textContent = u.name;
+          unitSelectEl.appendChild(opt);
+        });
+      } catch (_) {}
+    })();
+  </script>
+</body>
+</html>
