@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vocab — Practise</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
-      /* Solarized Light https://ethanschoonover.com/solarized */
-      --bg: #fdf6e3;
-      --surface: #eee8d5;
-      --border: #ddd6c4;
-      --text: #657b83;
-      --muted: #93a1a1;
-      --accent: #268bd2;
-      --accent-hover: #2aa198;
-      --danger: #dc322f;
-      --success: #859900;
+      /* Rosé Pine */
+      --bg: #faf4ed;
+      --surface: #fffaf3;
+      --border: #dfdad9;
+      --text: #575279;
+      --muted: #797593;
+      --accent: #286983;
+      --accent-hover: #56949f;
+      --danger: #b4637a;
+      --danger-hover: #d7827a;
+      --success: #618e42;
       --radius: 8px;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: "DM Sans", system-ui, sans-serif;
       background: var(--bg);
@@ -30,6 +38,7 @@
       min-height: 100vh;
       line-height: 1.5;
     }
+
     .top-nav {
       display: flex;
       gap: 1rem;
@@ -37,14 +46,46 @@
       background: var(--surface);
       border-bottom: 1px solid var(--border);
     }
-    .top-nav a { color: var(--muted); text-decoration: none; font-weight: 500; }
-    .top-nav a:hover { color: var(--text); }
-    .top-nav a.active { color: var(--accent); }
-    .container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
-    h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
-    label { font-size: 0.85rem; color: var(--muted); }
-    select, input[type="text"] {
+
+    .top-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .top-nav a:hover {
+      color: var(--text);
+    }
+
+    .top-nav a.active {
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    select,
+    input[type="text"] {
       font: inherit;
       padding: 0.5rem 0.75rem;
       background: var(--surface);
@@ -52,10 +93,13 @@
       border-radius: var(--radius);
       color: var(--text);
     }
-    select:focus, input:focus {
+
+    select:focus,
+    input:focus {
       outline: none;
       border-color: var(--accent);
     }
+
     .btn {
       font: inherit;
       padding: 0.5rem 1rem;
@@ -66,9 +110,24 @@
       background: var(--accent);
       color: #fdf6e3;
     }
-    .btn:hover { background: var(--accent-hover); }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .form-row { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
+
+    .btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
     .practice-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -76,22 +135,58 @@
       padding: 1rem 1.25rem;
       margin-bottom: 1rem;
     }
-    .practice-card .english { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.5rem; }
-    .practice-card .foreign { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; }
+
+    .practice-card .english {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .practice-card .foreign {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
     .practice-card .foreign .gap {
       min-width: 8rem;
       padding: 0.4rem 0.5rem;
       font-size: 1rem;
     }
-    .practice-card .foreign .text { font-size: 1rem; }
-    .submit-row { margin-top: 1.5rem; }
-    .result-feedback { font-size: 0.9rem; margin-top: 0.35rem; }
-    .result-feedback.correct { color: var(--success); }
-    .result-feedback.incorrect { color: var(--danger); }
-    .result-feedback .expected { color: var(--muted); }
-    .next-hint { color: var(--muted); font-size: 0.9rem; margin-top: 1rem; }
+
+    .practice-card .foreign .text {
+      font-size: 1rem;
+    }
+
+    .submit-row {
+      margin-top: 1.5rem;
+    }
+
+    .result-feedback {
+      font-size: 0.9rem;
+    }
+
+    .result-feedback.correct {
+      color: var(--success);
+    }
+
+    .result-feedback.incorrect {
+      color: var(--danger);
+    }
+
+    .result-feedback .expected {
+      color: var(--muted);
+    }
+
+    .next-hint {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
   </style>
 </head>
+
 <body>
   <nav class="top-nav">
     <a href="/">Create</a>
@@ -99,7 +194,8 @@
   </nav>
   <div class="container">
     <h1>Vocab — Practise</h1>
-    <p class="sub">Choose a unit and fill in the missing words. Tab through the blanks, then Submit. After reviewing, press Enter for the next set.</p>
+    <p class="sub">Choose a unit and fill in the missing words. Tab through the blanks, then Submit. After reviewing,
+      press Enter for the next set.</p>
 
     <div class="form-row">
       <label for="unit-select">Unit</label>
@@ -351,8 +447,9 @@
           opt.textContent = u.name;
           unitSelectEl.appendChild(opt);
         });
-      } catch (_) {}
+      } catch (_) { }
     })();
   </script>
 </body>
+
 </html>
