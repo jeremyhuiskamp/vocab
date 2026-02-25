@@ -10,148 +10,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
     rel="stylesheet" />
+  <link rel="stylesheet" href="common.css">
   <style>
-    :root {
-      /* Rosé Pine */
-      --bg: #faf4ed;
-      --surface: #fffaf3;
-      --border: #dfdad9;
-      --text: #575279;
-      --muted: #797593;
-      --accent: #286983;
-      --accent-hover: #56949f;
-      --danger: #b4637a;
-      --danger-hover: #d7827a;
-      --success: #618e42;
-      --radius: 8px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: "DM Sans", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      margin: 0;
-      min-height: 100vh;
-      line-height: 1.5;
-    }
-
-    .top-nav {
-      display: flex;
-      gap: 1rem;
-      padding: 0.75rem 1rem;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .top-nav a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .top-nav a:hover {
-      color: var(--accent-hover);
-    }
-
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-    }
-
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .sub {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 2rem;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-
-    label {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    select,
-    input[type="text"] {
-      font: inherit;
-      padding: 0.5rem 0.75rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      color: var(--text);
-      min-width: 140px;
-    }
-
-    input[type="text"] {
-      flex: 1;
-      min-width: 160px;
-    }
-
-    select:focus,
-    input:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .btn {
-      font: inherit;
-      padding: 0.5rem 1rem;
-      border-radius: var(--radius);
-      border: none;
-      cursor: pointer;
-      font-weight: 500;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fdf6e3;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-hover);
-    }
-
-    .btn-primary:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-
-    .btn-ghost:hover {
-      color: var(--text);
-    }
-
-    .btn-danger {
-      background: var(--danger);
-      color: var(--bg);
-    }
-
-    .btn-danger:hover {
-      background: var(--danger-hover);
-    }
-
     .status {
       margin-bottom: 1rem;
       font-size: 0.9rem;
@@ -259,7 +119,7 @@
 
 <body>
   <nav class="top-nav">
-    <a href="/">Create</a>
+    <a href="/" class="active">Create</a>
     <a href="/practise.html">Practise</a>
   </nav>
   <div class="container">
