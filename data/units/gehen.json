@@ -137,7 +137,842 @@
               "is_target": false
             }
           ],
-          "english": "Everything must happen fairly/legitimately."
+          "english": "Everything must happen legitimately."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er wollte auf sie",
+              "is_target": false
+            },
+            {
+              "text": "zugehen",
+              "is_target": true
+            },
+            {
+              "text": ", traute sich aber nicht.",
+              "is_target": false
+            }
+          ],
+          "english": "He wanted to approach her, but didn't dare."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Wenn der Laden um sechs Uhr",
+              "is_target": false
+            },
+            {
+              "text": "zugeht",
+              "is_target": true
+            },
+            {
+              "text": ", haben wir Feierabend.",
+              "is_target": false
+            }
+          ],
+          "english": "When the shop closes at six o'clock, we're off work."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Bei",
+              "is_target": false
+            },
+            {
+              "text": "uns",
+              "is_target": false
+            },
+            {
+              "text": "im",
+              "is_target": false
+            },
+            {
+              "text": "Büro",
+              "is_target": false
+            },
+            {
+              "text": "geht",
+              "is_target": true
+            },
+            {
+              "text": "es",
+              "is_target": false
+            },
+            {
+              "text": "manchmal",
+              "is_target": false
+            },
+            {
+              "text": "sehr",
+              "is_target": false
+            },
+            {
+              "text": "chaotisch",
+              "is_target": false
+            },
+            {
+              "text": "zu",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "In our office, things sometimes get very chaotic."
+        }
+      ]
+    },
+    {
+      "word": "aufgehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Die Sonne",
+              "is_target": false
+            },
+            {
+              "text": "geht",
+              "is_target": true
+            },
+            {
+              "text": "um 6 Uhr",
+              "is_target": false
+            },
+            {
+              "text": "auf",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The sun rises at 6 o'clock."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Der Teig muss noch eine Stunde",
+              "is_target": false
+            },
+            {
+              "text": "aufgehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The dough still needs to rise for an hour."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Hoffentlich wird unser Plan",
+              "is_target": false
+            },
+            {
+              "text": "aufgehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Hopefully, our plan will work out."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Das Kind",
+              "is_target": false
+            },
+            {
+              "text": "ist",
+              "is_target": true
+            },
+            {
+              "text": "ganz in seinem Spiel",
+              "is_target": false
+            },
+            {
+              "text": "aufgegangen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The child was completely absorbed in their game."
+        }
+      ]
+    },
+    {
+      "word": "nachgehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Meine Uhr",
+              "is_target": false
+            },
+            {
+              "text": "geht",
+              "is_target": true
+            },
+            {
+              "text": "immer ein paar Minuten",
+              "is_target": false
+            },
+            {
+              "text": "nach",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "My watch is always a few minutes slow."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Sie",
+              "is_target": false
+            },
+            {
+              "text": "ist",
+              "is_target": true
+            },
+            {
+              "text": "ihren Hobbys mit Leidenschaft",
+              "is_target": false
+            },
+            {
+              "text": "nachgegangen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "She pursued her hobbies with passion."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Die Polizei muss einer neuen Spur",
+              "is_target": false
+            },
+            {
+              "text": "nachgehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The police must follow a new lead."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Wir werden dieser Sache sorgfältig",
+              "is_target": false
+            },
+            {
+              "text": "nachgehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "We will carefully investigate this matter."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Ich",
+              "is_target": false
+            },
+            {
+              "text": "bin",
+              "is_target": true
+            },
+            {
+              "text": "dem Hinweis sofort",
+              "is_target": false
+            },
+            {
+              "text": "nachgegangen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "I immediately followed up on the tip."
+        }
+      ]
+    },
+    {
+      "word": "eingehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Wir müssen keine unnötigen Risiken",
+              "is_target": false
+            },
+            {
+              "text": "eingehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "We don't have to take unnecessary risks."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Mein Lieblingspullover",
+              "is_target": false
+            },
+            {
+              "text": "ist",
+              "is_target": true
+            },
+            {
+              "text": "beim Waschen stark",
+              "is_target": false
+            },
+            {
+              "text": "eingegangen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "My favorite sweater shrank a lot in the wash."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Wenn du die Pflanzen nicht gießt, werden sie",
+              "is_target": false
+            },
+            {
+              "text": "eingehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "If you don't water the plants, they will die."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Der Redner wollte",
+              "is_target": false
+            },
+            {
+              "text": "auf",
+              "is_target": true
+            },
+            {
+              "text": "die Frage des Publikums nicht",
+              "is_target": false
+            },
+            {
+              "text": "eingehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The speaker did not want to address the audience's question."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Bis heute Morgen",
+              "is_target": false
+            },
+            {
+              "text": "sind",
+              "is_target": true
+            },
+            {
+              "text": "keine neuen Bestellungen",
+              "is_target": false
+            },
+            {
+              "text": "eingegangen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "No new orders have been received by this morning."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Der Sprecher wird auf diesen Punkt später noch",
+              "is_target": false
+            },
+            {
+              "text": "eingehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The speaker will address this point later."
+        }
+      ]
+    },
+    {
+      "word": "sich ergehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Ich werde",
+              "is_target": false
+            },
+            {
+              "text": "mich",
+              "is_target": true
+            },
+            {
+              "text": "nach dem Abendessen im Park",
+              "is_target": false
+            },
+            {
+              "text": "ergehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "I will stroll in the park after dinner."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er",
+              "is_target": false
+            },
+            {
+              "text": "hat",
+              "is_target": true
+            },
+            {
+              "text": "sich",
+              "is_target": true
+            },
+            {
+              "text": "in langen Reden über das Thema",
+              "is_target": false
+            },
+            {
+              "text": "ergangen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He indulged in long speeches about the topic."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Das Gericht wird",
+              "is_target": false
+            },
+            {
+              "text": "sich",
+              "is_target": true
+            },
+            {
+              "text": "morgen über das Urteil",
+              "is_target": false
+            },
+            {
+              "text": "ergehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The court will issue its judgment tomorrow."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Sie liebt es,",
+              "is_target": false
+            },
+            {
+              "text": "sich",
+              "is_target": true
+            },
+            {
+              "text": "am Meer zu",
+              "is_target": false
+            },
+            {
+              "text": "ergehen",
+              "is_target": true
+            },
+            {
+              "text": "und die frische Luft zu genießen.",
+              "is_target": false
+            }
+          ],
+          "english": "She loves to stroll by the sea and enjoy the fresh air."
+        }
+      ]
+    },
+    {
+      "word": "sich vergehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Das Kind",
+              "is_target": false
+            },
+            {
+              "text": "hat",
+              "is_target": true
+            },
+            {
+              "text": "sich",
+              "is_target": true
+            },
+            {
+              "text": "im Geschäft",
+              "is_target": false
+            },
+            {
+              "text": "vergangen",
+              "is_target": true
+            },
+            {
+              "text": "und alles durcheinandergebracht",
+              "is_target": false
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The child misbehaved in the store and messed everything up."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Wer",
+              "is_target": false
+            },
+            {
+              "text": "sich",
+              "is_target": true
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": "den Vorschriften",
+              "is_target": false
+            },
+            {
+              "text": "vergeht",
+              "is_target": true
+            },
+            {
+              "text": ", muss mit einer Strafe rechnen",
+              "is_target": false
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Whoever violates the regulations must expect a penalty."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Es ist nicht erlaubt,",
+              "is_target": false
+            },
+            {
+              "text": "sich",
+              "is_target": true
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": "fremdem Eigentum",
+              "is_target": false
+            },
+            {
+              "text": "zu vergehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "It is not allowed to tamper with other people's property."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er",
+              "is_target": false
+            },
+            {
+              "text": "hatte",
+              "is_target": true
+            },
+            {
+              "text": "sich",
+              "is_target": true
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": "den ungeschriebenen Regeln der Gruppe",
+              "is_target": false
+            },
+            {
+              "text": "vergangen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He had offended against the unwritten rules of the group."
+        }
+      ]
+    },
+    {
+      "word": "vorgehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Wie sollen wir jetzt",
+              "is_target": false
+            },
+            {
+              "text": "vorgehen",
+              "is_target": true
+            },
+            {
+              "text": "?",
+              "is_target": false
+            }
+          ],
+          "english": "How should we proceed now?"
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er",
+              "is_target": false
+            },
+            {
+              "text": "geht",
+              "is_target": true
+            },
+            {
+              "text": "immer sehr vorsichtig",
+              "is_target": false
+            },
+            {
+              "text": "vor",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He always proceeds very cautiously."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Die Polizei",
+              "is_target": false
+            },
+            {
+              "text": "geht",
+              "is_target": true
+            },
+            {
+              "text": "bei solchen Fällen sehr streng",
+              "is_target": false
+            },
+            {
+              "text": "vor",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The police act very strictly in such cases."
+        }
+      ]
+    },
+    {
+      "word": "ausgehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Wir wollen heute Abend",
+              "is_target": false
+            },
+            {
+              "text": "ausgehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "We want to go out tonight."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Das Licht",
+              "is_target": false
+            },
+            {
+              "text": "geht",
+              "is_target": true
+            },
+            {
+              "text": "oft",
+              "is_target": false
+            },
+            {
+              "text": "aus",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The light often goes out."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Uns",
+              "is_target": false
+            },
+            {
+              "text": "ist",
+              "is_target": true
+            },
+            {
+              "text": "das Brot",
+              "is_target": false
+            },
+            {
+              "text": "ausgegangen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "We ran out of bread."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Ich",
+              "is_target": false
+            },
+            {
+              "text": "gehe",
+              "is_target": true
+            },
+            {
+              "text": "davon",
+              "is_target": false
+            },
+            {
+              "text": "aus",
+              "is_target": true
+            },
+            {
+              "text": ", dass alles gut wird.",
+              "is_target": false
+            }
+          ],
+          "english": "I assume that everything will be fine."
         }
       ]
     }
