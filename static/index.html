@@ -194,66 +194,6 @@
       gap: 0.5rem;
     }
 
-    .sentence-preview {
-      font-size: 0.95rem;
-      margin-bottom: 0.5rem;
-      padding: 0.35rem 0;
-      line-height: 1.5;
-      color: var(--muted);
-    }
-
-    .sentence-preview .target {
-      text-decoration: underline;
-      color: var(--text);
-    }
-
-    .sentence-fragments {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .fragment-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .fragment-wrap input[type="text"] {
-      flex: 1;
-      min-width: 0;
-      padding: 0.35rem 0.5rem;
-      font-size: 0.95rem;
-    }
-
-    .fragment-wrap label {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .fragment-wrap label input {
-      width: auto;
-      min-width: auto;
-    }
-
-    .fragment-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.2rem;
-      flex-shrink: 0;
-    }
-
-    .fragment-actions .btn {
-      padding: 0.25rem 0.35rem;
-      font-size: 0.75rem;
-      min-width: auto;
-    }
-
     .english-row label {
       display: block;
       font-size: 0.8rem;
@@ -375,7 +315,8 @@
     </div>
   </div>
 
-  <script>
+  <script type="module" src="fragment-highlight-editor.js"></script>
+  <script type="module">
     const unitNameEl = document.getElementById('unit-name');
     const loadUnitEl = document.getElementById('load-unit');
     const wordIdeasDescEl = document.getElementById('word-ideas-desc');
@@ -419,139 +360,12 @@
     }
 
     function emptySentence() {
-      return { fragments: [{ text: '', is_target: true }], english: '' };
-    }
-
-    function renderFragment(frag, fragIndex, cardIndex, fragCount) {
-      const wrap = document.createElement('div');
-      wrap.className = 'fragment-wrap';
-
-      const actions = document.createElement('div');
-      actions.className = 'fragment-actions';
-
-      const moveUp = document.createElement('button');
-      moveUp.type = 'button';
-      moveUp.className = 'btn btn-ghost';
-      moveUp.textContent = '\u2191';
-      moveUp.title = 'Move up';
-      moveUp.disabled = fragIndex === 0;
-      moveUp.addEventListener('click', () => {
-        updateStateFromList();
-        const sent = currentSentences();
-        if (cardIndex >= sent.length) return;
-        const frags = sent[cardIndex].fragments.slice();
-        if (fragIndex > 0) {
-          [frags[fragIndex - 1], frags[fragIndex]] = [frags[fragIndex], frags[fragIndex - 1]];
-          sent[cardIndex] = { ...sent[cardIndex], fragments: frags };
-          renderSentencesList();
-        }
-      });
-
-      const moveDown = document.createElement('button');
-      moveDown.type = 'button';
-      moveDown.className = 'btn btn-ghost';
-      moveDown.textContent = '\u2193';
-      moveDown.title = 'Move down';
-      moveDown.disabled = fragIndex === fragCount - 1;
-      moveDown.addEventListener('click', () => {
-        updateStateFromList();
-        const sent = currentSentences();
-        if (cardIndex >= sent.length) return;
-        const frags = sent[cardIndex].fragments.slice();
-        if (fragIndex < fragCount - 1) {
-          [frags[fragIndex], frags[fragIndex + 1]] = [frags[fragIndex + 1], frags[fragIndex]];
-          sent[cardIndex] = { ...sent[cardIndex], fragments: frags };
-          renderSentencesList();
-        }
-      });
-
-      const addBefore = document.createElement('button');
-      addBefore.type = 'button';
-      addBefore.className = 'btn btn-ghost';
-      addBefore.textContent = '+\u2191';
-      addBefore.title = 'Add fragment before this one';
-      addBefore.addEventListener('click', () => {
-        updateStateFromList();
-        const sent = currentSentences();
-        if (cardIndex >= sent.length) return;
-        const frags = sent[cardIndex].fragments.slice();
-        frags.splice(fragIndex, 0, { text: '', is_target: false });
-        sent[cardIndex] = { ...sent[cardIndex], fragments: frags };
-        renderSentencesList();
-      });
-
-      const addAfter = document.createElement('button');
-      addAfter.type = 'button';
-      addAfter.className = 'btn btn-ghost';
-      addAfter.textContent = '+\u2193';
-      addAfter.title = 'Add fragment after this one';
-      addAfter.addEventListener('click', () => {
-        updateStateFromList();
-        const sent = currentSentences();
-        if (cardIndex >= sent.length) return;
-        const frags = sent[cardIndex].fragments.slice();
-        frags.splice(fragIndex + 1, 0, { text: '', is_target: false });
-        sent[cardIndex] = { ...sent[cardIndex], fragments: frags };
-        renderSentencesList();
-      });
-
-      const removeBtn = document.createElement('button');
-      removeBtn.type = 'button';
-      removeBtn.className = 'btn btn-ghost';
-      removeBtn.textContent = '\u00d7';
-      removeBtn.title = 'Remove fragment';
-      removeBtn.disabled = fragCount <= 1;
-      removeBtn.addEventListener('click', () => {
-        updateStateFromList();
-        if (fragCount <= 1) return;
-        const sent = currentSentences();
-        if (cardIndex >= sent.length) return;
-        const frags = sent[cardIndex].fragments.slice();
-        frags.splice(fragIndex, 1);
-        sent[cardIndex] = { ...sent[cardIndex], fragments: frags };
-        renderSentencesList();
-      });
-
-      actions.appendChild(moveUp);
-      actions.appendChild(moveDown);
-      actions.appendChild(addBefore);
-      actions.appendChild(addAfter);
-      actions.appendChild(removeBtn);
-      wrap.appendChild(actions);
-
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.value = frag.text;
-      input.placeholder = 'fragment';
-      input.dataset.cardIndex = String(cardIndex);
-      input.dataset.fragIndex = String(fragIndex);
-      input.dataset.field = 'text';
-      const label = document.createElement('label');
-      const check = document.createElement('input');
-      check.type = 'checkbox';
-      check.checked = frag.is_target;
-      check.dataset.cardIndex = String(cardIndex);
-      check.dataset.fragIndex = String(fragIndex);
-      check.dataset.field = 'is_target';
-      label.appendChild(check);
-      label.appendChild(document.createTextNode(' target'));
-      wrap.appendChild(input);
-      wrap.appendChild(label);
-      return wrap;
+      return { fragments: [{ text: '', target: true }], english: '' };
     }
 
     function collectCard(cardEl) {
-      const cardIndex = parseInt(cardEl.dataset.index, 10);
-      const fragWraps = cardEl.querySelectorAll('.fragment-wrap');
-      const fragments = [];
-      fragWraps.forEach((wrap, i) => {
-        const textInput = wrap.querySelector('input[type="text"]');
-        const targetCheck = wrap.querySelector('input[type="checkbox"]');
-        fragments.push({
-          text: textInput.value.trim(),
-          is_target: targetCheck.checked
-        });
-      });
+      const editor = cardEl.querySelector('fragment-highlight-editor');
+      const fragments = editor ? editor.fragments : [];
       const englishInput = cardEl.querySelector('.english-row input');
       return { fragments, english: englishInput ? englishInput.value.trim() : '' };
     }
@@ -564,36 +378,6 @@
     function updateStateFromList() {
       const e = currentEntry();
       if (e) e.sentences = collectAll();
-    }
-
-    function needsSpaceBetween(prevText, nextText) {
-      if (!prevText.length || !nextText.length) return false;
-      const last = prevText.slice(-1);
-      const first = nextText[0];
-      return !/\s/.test(last) && !/\s/.test(first);
-    }
-
-    function updatePreview(cardEl) {
-      const pair = collectCard(cardEl);
-      const previewEl = cardEl.querySelector('.sentence-preview');
-      if (!previewEl) return;
-      const fragments = pair.fragments;
-      const parts = fragments.map(f => {
-        const t = f.text === '' ? '\u00a0' : f.text;
-        return f.is_target ? '<span class="target">' + escapeHtml(t) + '</span>' : escapeHtml(t);
-      });
-      let html = parts[0] || '';
-      for (let i = 1; i < parts.length; i++) {
-        if (needsSpaceBetween(fragments[i - 1].text, fragments[i].text)) html += ' ';
-        html += parts[i];
-      }
-      previewEl.innerHTML = html;
-    }
-
-    function escapeHtml(s) {
-      const div = document.createElement('div');
-      div.textContent = s;
-      return div.innerHTML;
     }
 
     function renderCard(pair, index) {
@@ -633,16 +417,13 @@
       header.appendChild(actions);
       card.appendChild(header);
 
-      const previewDiv = document.createElement('div');
-      previewDiv.className = 'sentence-preview';
-      previewDiv.setAttribute('aria-label', 'Full sentence preview (target parts underlined)');
-      card.appendChild(previewDiv);
-
-      const fragsDiv = document.createElement('div');
-      fragsDiv.className = 'sentence-fragments';
-      const fragCount = pair.fragments.length;
-      pair.fragments.forEach((f, fi) => fragsDiv.appendChild(renderFragment(f, fi, index, fragCount)));
-      card.appendChild(fragsDiv);
+      const editor = document.createElement('fragment-highlight-editor');
+      editor.fragments = pair.fragments;
+      const entry = currentEntry();
+      if (entry && entry.target_language) {
+        editor.language = entry.target_language.charAt(0).toUpperCase() + entry.target_language.slice(1);
+      }
+      card.appendChild(editor);
 
       const englishRow = document.createElement('div');
       englishRow.className = 'english-row';
@@ -656,10 +437,7 @@
       englishRow.appendChild(englishInput);
       card.appendChild(englishRow);
 
-      updatePreview(card);
-
-      card.addEventListener('input', () => { updateStateFromList(); updatePreview(card); });
-      card.addEventListener('change', () => { updateStateFromList(); updatePreview(card); });
+      editor.addEventListener('change', () => { updateStateFromList(); });
 
       return card;
     }
@@ -669,7 +447,6 @@
         card.dataset.index = String(i);
         const title = card.querySelector('.card-title');
         if (title) title.textContent = 'Sentence ' + (i + 1);
-        card.querySelectorAll('[data-card-index]').forEach(el => { el.dataset.cardIndex = String(i); });
       });
     }
 
@@ -805,7 +582,7 @@
         word: e.word,
         target_language: e.target_language,
         sentences: e.sentences.filter(s =>
-          s.fragments.some(f => f.is_target) && s.fragments.some(f => f.text.trim() !== '')
+          s.fragments.some(f => f.target) && s.fragments.some(f => f.text.trim() !== '')
         )
       }));
       setSaveResult('Saving…');
@@ -836,7 +613,16 @@
         const unit = await res.json();
         state.unitName = unit.name;
         state.unitSlug = slug;
-        state.entries = unit.entries || [];
+        state.entries = (unit.entries || []).map(e => ({
+          ...e,
+          sentences: e.sentences.map(s => ({
+            ...s,
+            fragments: s.fragments.map(f => ({
+              text: f.text,
+              target: f.target ?? f.is_target ?? false
+            }))
+          }))
+        }));
         state.selectedEntryIndex = state.entries.length > 0 ? 0 : 0;
         unitNameEl.value = unit.name;
         loadUnitEl.value = slug;

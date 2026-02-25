@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit Tests</title>
+  <style>
+    body     { font-family: monospace; max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
+    h1       { font-size: 1.1em; margin-bottom: 1.5rem; }
+    .suite   { margin-bottom: 1.25rem; }
+    .suite-name { font-weight: bold; margin-bottom: 0.4rem; }
+    .result  { padding: 3px 6px; border-radius: 3px; margin: 2px 0; font-size: 0.9em; }
+    .pass    { background: #d4edda; color: #155724; }
+    .fail    { background: #f8d7da; color: #721c24; }
+    .detail  { opacity: 0.8; margin: 2px 0 4px 1.5em; font-size: 0.85em; }
+    #summary { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #ccc;
+               font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Unit Tests</h1>
+  <div id="results"></div>
+  <div id="summary"></div>
+
+  <script type="module">
+    // Import component (registers the custom element) and test suites
+    import './fragment-highlight-editor.js';
+    import { Harness } from './test-harness.js';
+    import * as suite1 from './fragment-highlight-editor.test.js';
+
+    const suites = [
+      suite1,
+      // add more suites here
+    ];
+
+    // Wait for custom elements to be defined before running tests
+    await customElements.whenDefined('fragment-highlight-editor');
+
+    const container = document.getElementById('results');
+    let totalPass = 0, totalFail = 0;
+
+    for (const suite of suites) {
+      const h = new Harness();
+      try { await suite.run(h); } catch(err) {
+        h.results.push({ ok: false, description: '(suite crashed)', actual: String(err), expected: '(no error)' });
+      }
+
+      const suitePass = h.results.filter(r => r.ok).length;
+      const suiteFail = h.results.filter(r => !r.ok).length;
+      totalPass += suitePass;
+      totalFail += suiteFail;
+
+      const suiteEl = document.createElement('div');
+      suiteEl.className = 'suite';
+
+      const nameEl = document.createElement('div');
+      nameEl.className = 'suite-name';
+      nameEl.textContent = `${suite.name}  (${suitePass}/${h.results.length})`;
+      suiteEl.appendChild(nameEl);
+
+      for (const r of h.results) {
+        const row = document.createElement('div');
+        row.className = 'result ' + (r.ok ? 'pass' : 'fail');
+        row.textContent = (r.ok ? '✓ ' : '✗ ') + r.description;
+        suiteEl.appendChild(row);
+        if (!r.ok) {
+          const detail = document.createElement('div');
+          detail.className = 'detail';
+          detail.innerHTML = `expected: ${r.expected}<br>got:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${r.actual}`;
+          suiteEl.appendChild(detail);
+        }
+      }
+
+      container.appendChild(suiteEl);
+    }
+
+    document.getElementById('summary').textContent =
+      `${totalPass + totalFail} tests — ${totalPass} passed, ${totalFail} failed.`;
+  </script>
+</body>
+</html>
