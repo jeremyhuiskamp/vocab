@@ -41,3 +41,11 @@
 - save a prompt with a unit
   - eg "root gehen, with various prefixes"
   - makes it easier to extend a unit on a theme
+
+- allow a free text box for translation
+  - ask an llm to grade against an expected answer:
+    - "is this an acceptable translation?"
+  - this would be llm in the practise loop
+    - more expensive, slower, harder to test
+    - but super interesting!
+  - probably works best with reading the foreign language
