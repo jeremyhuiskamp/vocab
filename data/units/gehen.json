@@ -8,7 +8,7 @@
         {
           "fragments": [
             {
-              "text": "Die Tür",
+              "text": "Die Tür ",
               "is_target": false
             },
             {
@@ -16,7 +16,7 @@
               "is_target": true
             },
             {
-              "text": "automatisch",
+              "text": " automatisch ",
               "is_target": false
             },
             {
@@ -33,7 +33,7 @@
         {
           "fragments": [
             {
-              "text": "Bei der Party",
+              "text": "Bei der Party ",
               "is_target": false
             },
             {
@@ -41,7 +41,7 @@
               "is_target": true
             },
             {
-              "text": "es richtig lustig",
+              "text": " es richtig lustig ",
               "is_target": false
             },
             {
@@ -58,7 +58,7 @@
         {
           "fragments": [
             {
-              "text": "Der Junge",
+              "text": "Der Junge ",
               "is_target": false
             },
             {
@@ -66,7 +66,7 @@
               "is_target": true
             },
             {
-              "text": "direkt auf seine Mutter",
+              "text": " direkt auf seine Mutter ",
               "is_target": false
             },
             {
@@ -83,7 +83,7 @@
         {
           "fragments": [
             {
-              "text": "Der Reißverschluss will nicht mehr",
+              "text": "Der Reißverschluss will nicht mehr ",
               "is_target": false
             },
             {
@@ -100,7 +100,7 @@
         {
           "fragments": [
             {
-              "text": "Was",
+              "text": "Was ",
               "is_target": false
             },
             {
@@ -108,7 +108,7 @@
               "is_target": true
             },
             {
-              "text": "hier eigentlich",
+              "text": " hier eigentlich ",
               "is_target": false
             },
             {
@@ -125,7 +125,7 @@
         {
           "fragments": [
             {
-              "text": "Es muss alles mit rechten Dingen",
+              "text": "Es muss alles mit rechten Dingen ",
               "is_target": false
             },
             {
@@ -142,7 +142,7 @@
         {
           "fragments": [
             {
-              "text": "Er wollte auf sie",
+              "text": "Er wollte auf sie ",
               "is_target": false
             },
             {
@@ -159,7 +159,7 @@
         {
           "fragments": [
             {
-              "text": "Wenn der Laden um sechs Uhr",
+              "text": "Wenn der Laden um sechs Uhr ",
               "is_target": false
             },
             {
@@ -176,19 +176,7 @@
         {
           "fragments": [
             {
-              "text": "Bei",
-              "is_target": false
-            },
-            {
-              "text": "uns",
-              "is_target": false
-            },
-            {
-              "text": "im",
-              "is_target": false
-            },
-            {
-              "text": "Büro",
+              "text": "Bei uns im Büro ",
               "is_target": false
             },
             {
@@ -196,19 +184,7 @@
               "is_target": true
             },
             {
-              "text": "es",
-              "is_target": false
-            },
-            {
-              "text": "manchmal",
-              "is_target": false
-            },
-            {
-              "text": "sehr",
-              "is_target": false
-            },
-            {
-              "text": "chaotisch",
+              "text": " es manchmal sehr chaotisch ",
               "is_target": false
             },
             {
@@ -436,7 +412,7 @@
         {
           "fragments": [
             {
-              "text": "Wir müssen keine unnötigen Risiken",
+              "text": "Wir müssen keine unnötigen Risiken ",
               "is_target": false
             },
             {
@@ -453,7 +429,7 @@
         {
           "fragments": [
             {
-              "text": "Mein Lieblingspullover",
+              "text": "Mein Lieblingspullover ",
               "is_target": false
             },
             {
@@ -461,7 +437,7 @@
               "is_target": true
             },
             {
-              "text": "beim Waschen stark",
+              "text": " beim Waschen stark ",
               "is_target": false
             },
             {
@@ -478,7 +454,7 @@
         {
           "fragments": [
             {
-              "text": "Wenn du die Pflanzen nicht gießt, werden sie",
+              "text": "Wenn du die Pflanzen nicht gießt, werden sie ",
               "is_target": false
             },
             {
@@ -495,7 +471,7 @@
         {
           "fragments": [
             {
-              "text": "Der Redner wollte",
+              "text": "Der Redner wollte ",
               "is_target": false
             },
             {
@@ -503,7 +479,7 @@
               "is_target": true
             },
             {
-              "text": "die Frage des Publikums nicht",
+              "text": " die Frage des Publikums nicht ",
               "is_target": false
             },
             {
@@ -520,7 +496,7 @@
         {
           "fragments": [
             {
-              "text": "Bis heute Morgen",
+              "text": "Bis heute Morgen ",
               "is_target": false
             },
             {
@@ -528,7 +504,7 @@
               "is_target": true
             },
             {
-              "text": "keine neuen Bestellungen",
+              "text": " keine neuen Bestellungen ",
               "is_target": false
             },
             {
@@ -545,7 +521,15 @@
         {
           "fragments": [
             {
-              "text": "Der Sprecher wird auf diesen Punkt später noch",
+              "text": "Der Sprecher wird ",
+              "is_target": false
+            },
+            {
+              "text": "auf",
+              "is_target": true
+            },
+            {
+              "text": " diesen Punkt später noch ",
               "is_target": false
             },
             {
@@ -678,7 +662,7 @@
         {
           "fragments": [
             {
-              "text": "Das Kind",
+              "text": "Das Kind ",
               "is_target": false
             },
             {
@@ -686,11 +670,15 @@
               "is_target": true
             },
             {
+              "text": " ",
+              "is_target": false
+            },
+            {
               "text": "sich",
               "is_target": true
             },
             {
-              "text": "im Geschäft",
+              "text": " im Geschäft ",
               "is_target": false
             },
             {
@@ -698,11 +686,7 @@
               "is_target": true
             },
             {
-              "text": "und alles durcheinandergebracht",
-              "is_target": false
-            },
-            {
-              "text": ".",
+              "text": " und alles durcheinandergebracht.",
               "is_target": false
             }
           ],
@@ -711,7 +695,7 @@
         {
           "fragments": [
             {
-              "text": "Wer",
+              "text": "Wer ",
               "is_target": false
             },
             {
@@ -719,11 +703,15 @@
               "is_target": true
             },
             {
+              "text": " ",
+              "is_target": false
+            },
+            {
               "text": "an",
               "is_target": true
             },
             {
-              "text": "den Vorschriften",
+              "text": " den Vorschriften ",
               "is_target": false
             },
             {
@@ -731,11 +719,7 @@
               "is_target": true
             },
             {
-              "text": ", muss mit einer Strafe rechnen",
-              "is_target": false
-            },
-            {
-              "text": ".",
+              "text": ", muss mit einer Strafe rechnen.",
               "is_target": false
             }
           ],
@@ -744,7 +728,7 @@
         {
           "fragments": [
             {
-              "text": "Es ist nicht erlaubt,",
+              "text": "Es ist nicht erlaubt, ",
               "is_target": false
             },
             {
@@ -752,15 +736,27 @@
               "is_target": true
             },
             {
+              "text": " ",
+              "is_target": false
+            },
+            {
               "text": "an",
               "is_target": true
             },
             {
-              "text": "fremdem Eigentum",
+              "text": " fremdem Eigentum ",
               "is_target": false
             },
             {
-              "text": "zu vergehen",
+              "text": "zu",
+              "is_target": true
+            },
+            {
+              "text": " ",
+              "is_target": false
+            },
+            {
+              "text": "vergehen",
               "is_target": true
             },
             {
@@ -773,7 +769,7 @@
         {
           "fragments": [
             {
-              "text": "Er",
+              "text": "Er ",
               "is_target": false
             },
             {
@@ -781,15 +777,23 @@
               "is_target": true
             },
             {
+              "text": " ",
+              "is_target": false
+            },
+            {
               "text": "sich",
               "is_target": true
+            },
+            {
+              "text": " ",
+              "is_target": false
             },
             {
               "text": "an",
               "is_target": true
             },
             {
-              "text": "den ungeschriebenen Regeln der Gruppe",
+              "text": " den ungeschriebenen Regeln der Gruppe ",
               "is_target": false
             },
             {
