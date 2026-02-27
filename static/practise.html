@@ -126,7 +126,7 @@
     <div id="no-unit" class="sub">Select a unit to load its sentences.</div>
     <div id="stats-bar" class="stats-bar" hidden>
       <span>Total: <span class="stat-value" id="stat-total">0</span></span>
-      <span>Answered: <span class="stat-value" id="stat-answered">0</span></span>
+      <span><span id="stat-answered-label">Answered ×1</span>: <span class="stat-value" id="stat-answered">0</span></span>
       <span class="needs-work">Needs work: <span class="stat-value" id="stat-needs-work">0</span></span>
     </div>
     <div id="practice-area" hidden>
@@ -146,6 +146,7 @@
     const noUnitEl = document.getElementById('no-unit');
     const statsBarEl = document.getElementById('stats-bar');
     const statTotalEl = document.getElementById('stat-total');
+    const statAnsweredLabelEl = document.getElementById('stat-answered-label');
     const statAnsweredEl = document.getElementById('stat-answered');
     const statNeedsWorkEl = document.getElementById('stat-needs-work');
     const practiceAreaEl = document.getElementById('practice-area');
@@ -162,15 +163,21 @@
 
     function updateStats() {
       const total = allQuestions.length;
+
+      const minAttempts = allQuestions.length === 0 ? 0
+        : Math.min(...allQuestions.map(q => sessionStats[q.id]?.attempts || 0));
+      const threshold = minAttempts + 1;
+
       let answered = 0;
       let needsWork = 0;
       allQuestions.forEach(q => {
         const s = sessionStats[q.id];
-        if (!s || s.attempts === 0) return;
-        answered++;
-        if (s.correct / s.attempts < 0.75) needsWork++;
+        if ((s?.attempts || 0) >= threshold) answered++;
+        if (s && s.attempts > 0 && s.correct / s.attempts < 0.75) needsWork++;
       });
+
       statTotalEl.textContent = total;
+      statAnsweredLabelEl.textContent = 'Answered ' + threshold + '×';
       statAnsweredEl.textContent = answered;
       statNeedsWorkEl.textContent = needsWork;
     }
