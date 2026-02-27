@@ -1,0 +1,824 @@
+{
+  "name": "Verben mit an",
+  "entries": [
+    {
+      "word": "anziehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Ich muss ",
+              "is_target": false
+            },
+            {
+              "text": "mich",
+              "is_target": true
+            },
+            {
+              "text": " warm ",
+              "is_target": false
+            },
+            {
+              "text": "anziehen",
+              "is_target": true
+            },
+            {
+              "text": ", bevor wir rausgehen.",
+              "is_target": false
+            }
+          ],
+          "english": "I need to dress warmly before we go out."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Die neue Ausstellung soll viele Besucher ",
+              "is_target": false
+            },
+            {
+              "text": "anziehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The new exhibition is supposed to attract many visitors."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Zieh",
+              "is_target": true
+            },
+            {
+              "text": " bitte deine Schuhe ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ", bevor du gehst.",
+              "is_target": false
+            }
+          ],
+          "english": "Please put on your shoes before you go."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er ",
+              "is_target": false
+            },
+            {
+              "text": "hat",
+              "is_target": true
+            },
+            {
+              "text": " die Schrauben fest ",
+              "is_target": false
+            },
+            {
+              "text": "angezogen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He tightened the screws firmly."
+        }
+      ]
+    },
+    {
+      "word": "annehmen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Ich ",
+              "is_target": false
+            },
+            {
+              "text": "nehme",
+              "is_target": true
+            },
+            {
+              "text": " ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ", dass du Recht hast.",
+              "is_target": false
+            }
+          ],
+          "english": "I assume that you are right."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Sie ",
+              "is_target": false
+            },
+            {
+              "text": "hat",
+              "is_target": true
+            },
+            {
+              "text": " das Angebot ",
+              "is_target": false
+            },
+            {
+              "text": "angenommen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "She accepted the offer."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Wir müssen die Herausforderung ",
+              "is_target": false
+            },
+            {
+              "text": "annehmen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "We must accept the challenge."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Kannst du bitte dieses Paket ",
+              "is_target": false
+            },
+            {
+              "text": "annehmen",
+              "is_target": true
+            },
+            {
+              "text": "?",
+              "is_target": false
+            }
+          ],
+          "english": "Can you please accept this package?"
+        },
+        {
+          "fragments": [
+            {
+              "text": "Man sollte nicht einfach alles so ",
+              "is_target": false
+            },
+            {
+              "text": "annehmen",
+              "is_target": true
+            },
+            {
+              "text": ", wie es gesagt wird.",
+              "is_target": false
+            }
+          ],
+          "english": "One should not simply accept everything as it is said."
+        }
+      ]
+    },
+    {
+      "word": "ansehen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Ich ",
+              "is_target": false
+            },
+            {
+              "text": "sehe",
+              "is_target": true
+            },
+            {
+              "text": " ",
+              "is_target": false
+            },
+            {
+              "text": "mir",
+              "is_target": true
+            },
+            {
+              "text": " den Film ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "I am watching the movie."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Wir wollen ",
+              "is_target": false
+            },
+            {
+              "text": "uns",
+              "is_target": true
+            },
+            {
+              "text": " die Bilder ",
+              "is_target": false
+            },
+            {
+              "text": "ansehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "We want to look at the pictures."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er ",
+              "is_target": false
+            },
+            {
+              "text": "hat",
+              "is_target": true
+            },
+            {
+              "text": " mich nicht ",
+              "is_target": false
+            },
+            {
+              "text": "angesehen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He did not look at me."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Sieh",
+              "is_target": true
+            },
+            {
+              "text": " ",
+              "is_target": false
+            },
+            {
+              "text": "dir",
+              "is_target": true
+            },
+            {
+              "text": " das mal ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": "!",
+              "is_target": false
+            }
+          ],
+          "english": "Look at that!"
+        }
+      ]
+    },
+    {
+      "word": "anwenden",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Man kann diese Methode in vielen Situationen ",
+              "is_target": false
+            },
+            {
+              "text": "anwenden",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "One can apply this method in many situations."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er ",
+              "is_target": false
+            },
+            {
+              "text": "wendet",
+              "is_target": true
+            },
+            {
+              "text": " sein Wissen oft in der Praxis ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He often applies his knowledge in practice."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Sie hat eine neue Strategie ",
+              "is_target": false
+            },
+            {
+              "text": "angewendet",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "She applied a new strategy."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Die Creme muss zweimal täglich ",
+              "is_target": false
+            },
+            {
+              "text": "angewendet",
+              "is_target": true
+            },
+            {
+              "text": " werden.",
+              "is_target": false
+            }
+          ],
+          "english": "The cream must be applied twice daily."
+        }
+      ]
+    },
+    {
+      "word": "anlegen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Wir müssen das Boot ",
+              "is_target": false
+            },
+            {
+              "text": "am",
+              "is_target": true
+            },
+            {
+              "text": " Steg ",
+              "is_target": false
+            },
+            {
+              "text": "anlegen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "We have to moor the boat at the pier."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Es ist ratsam, Geld langfristig ",
+              "is_target": false
+            },
+            {
+              "text": "anzulegen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "It is advisable to invest money long-term."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Sie möchte einen Gemüsegarten ",
+              "is_target": false
+            },
+            {
+              "text": "anlegen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "She wants to create a vegetable garden."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Bitte ",
+              "is_target": false
+            },
+            {
+              "text": "legen",
+              "is_target": true
+            },
+            {
+              "text": " Sie das Lineal genau ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": " die Kante ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Please place the ruler precisely against the edge."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Bitte ",
+              "is_target": false
+            },
+            {
+              "text": "legen",
+              "is_target": true
+            },
+            {
+              "text": " Sie Ihren Sicherheitsgurt ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Please fasten your seatbelt."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Der Jäger ",
+              "is_target": false
+            },
+            {
+              "text": "legte",
+              "is_target": true
+            },
+            {
+              "text": " das Gewehr ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": " und zielte.",
+              "is_target": false
+            }
+          ],
+          "english": "The hunter aimed the rifle and took aim."
+        }
+      ]
+    },
+    {
+      "word": "ansprechen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Ich werde ihn morgen darauf ",
+              "is_target": false
+            },
+            {
+              "text": "ansprechen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "I will address him about that tomorrow."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Dieses Angebot sollte viele Kunden ",
+              "is_target": false
+            },
+            {
+              "text": "ansprechen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "This offer should appeal to many customers."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Sie ",
+              "is_target": false
+            },
+            {
+              "text": "hat",
+              "is_target": true
+            },
+            {
+              "text": " das Problem in der Besprechung direkt ",
+              "is_target": false
+            },
+            {
+              "text": "angesprochen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "She directly brought up the problem in the meeting."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Kann ich dich kurz ",
+              "is_target": false
+            },
+            {
+              "text": "auf",
+              "is_target": true
+            },
+            {
+              "text": " etwas ",
+              "is_target": false
+            },
+            {
+              "text": "ansprechen",
+              "is_target": true
+            },
+            {
+              "text": "?",
+              "is_target": false
+            }
+          ],
+          "english": "Can I briefly talk to you about something?"
+        }
+      ]
+    },
+    {
+      "word": "anmachen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Kannst du bitte das Licht ",
+              "is_target": false
+            },
+            {
+              "text": "anmachen",
+              "is_target": true
+            },
+            {
+              "text": "?",
+              "is_target": false
+            }
+          ],
+          "english": "Can you please turn on the light?"
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er hat versucht, sie in der Bar ",
+              "is_target": false
+            },
+            {
+              "text": "anzumachen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He tried to hit on her at the bar."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Ich muss noch den Salat ",
+              "is_target": false
+            },
+            {
+              "text": "anmachen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "I still need to dress the salad."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Sie ",
+              "is_target": false
+            },
+            {
+              "text": "machte",
+              "is_target": true
+            },
+            {
+              "text": " das Radio sofort ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ", als sie reinkam.",
+              "is_target": false
+            }
+          ],
+          "english": "She immediately turned on the radio when she came in."
+        }
+      ]
+    },
+    {
+      "word": "anordnen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Sie ",
+              "is_target": false
+            },
+            {
+              "text": "ordnet",
+              "is_target": true
+            },
+            {
+              "text": " die Blumen schön in der Vase ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "She arranges the flowers beautifully in the vase."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Der Direktor ",
+              "is_target": false
+            },
+            {
+              "text": "hat",
+              "is_target": true
+            },
+            {
+              "text": " eine sofortige Untersuchung ",
+              "is_target": false
+            },
+            {
+              "text": "angeordnet",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The director ordered an immediate investigation."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Wir müssen die Tische neu ",
+              "is_target": false
+            },
+            {
+              "text": "anordnen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "We have to rearrange the tables."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Die Regierung ",
+              "is_target": false
+            },
+            {
+              "text": "ordnet",
+              "is_target": true
+            },
+            {
+              "text": " neue Maßnahmen zur Pandemiebekämpfung ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The government orders new measures to combat the pandemic."
+        }
+      ]
+    }
+  ]
+}
