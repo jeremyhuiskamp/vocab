@@ -364,6 +364,12 @@
       if (active === submitBtn) {
         e.preventDefault();
         gradeAndShowResult();
+      } else if (active && active.classList.contains('gap')) {
+        const inputs = Array.from(questionsContainerEl.querySelectorAll('input.gap'));
+        if (inputs.every(inp => inp.value.trim() !== '')) {
+          e.preventDefault();
+          gradeAndShowResult();
+        }
       }
     });
 
