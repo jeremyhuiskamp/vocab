@@ -22,11 +22,20 @@
     }
 
     .practice-card {
+      position: relative;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1rem 1.25rem;
       margin-bottom: 1rem;
+    }
+
+    .question-stats {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--muted);
     }
 
     .practice-card .english {
@@ -77,6 +86,23 @@
       font-size: 0.9rem;
       margin-top: 1rem;
     }
+
+    .stats-bar {
+      display: flex;
+      gap: 1.5rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .stats-bar .stat-value {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .stats-bar .needs-work .stat-value {
+      color: var(--danger);
+    }
   </style>
 </head>
 
@@ -98,6 +124,11 @@
     </div>
 
     <div id="no-unit" class="sub">Select a unit to load its sentences.</div>
+    <div id="stats-bar" class="stats-bar" hidden>
+      <span>Total: <span class="stat-value" id="stat-total">0</span></span>
+      <span>Answered: <span class="stat-value" id="stat-answered">0</span></span>
+      <span class="needs-work">Needs work: <span class="stat-value" id="stat-needs-work">0</span></span>
+    </div>
     <div id="practice-area" hidden>
       <div id="questions-container"></div>
       <div class="submit-row">
@@ -113,6 +144,10 @@
   <script>
     const unitSelectEl = document.getElementById('unit-select');
     const noUnitEl = document.getElementById('no-unit');
+    const statsBarEl = document.getElementById('stats-bar');
+    const statTotalEl = document.getElementById('stat-total');
+    const statAnsweredEl = document.getElementById('stat-answered');
+    const statNeedsWorkEl = document.getElementById('stat-needs-work');
     const practiceAreaEl = document.getElementById('practice-area');
     const questionsContainerEl = document.getElementById('questions-container');
     const submitBtn = document.getElementById('submit-btn');
@@ -124,6 +159,21 @@
     let sessionStats = {};
     let currentSet = [];
     let tabIndexCounter = 1;
+
+    function updateStats() {
+      const total = allQuestions.length;
+      let answered = 0;
+      let needsWork = 0;
+      allQuestions.forEach(q => {
+        const s = sessionStats[q.id];
+        if (!s || s.attempts === 0) return;
+        answered++;
+        if (s.correct / s.attempts < 0.75) needsWork++;
+      });
+      statTotalEl.textContent = total;
+      statAnsweredEl.textContent = answered;
+      statNeedsWorkEl.textContent = needsWork;
+    }
 
     function flattenUnit(unitData) {
       const list = [];
@@ -179,6 +229,13 @@
         const card = document.createElement('div');
         card.className = 'practice-card';
         card.innerHTML = '<div class="english">' + escapeHtml(q.english) + '</div>';
+        const s = sessionStats[q.id];
+        if (s && s.attempts > 0) {
+          const statsEl = document.createElement('span');
+          statsEl.className = 'question-stats';
+          statsEl.textContent = s.correct + ' / ' + s.attempts;
+          card.appendChild(statsEl);
+        }
         const foreign = document.createElement('div');
         foreign.className = 'foreign';
         q.fragments.forEach((frag, fi) => {
@@ -233,6 +290,7 @@
         return { q, answers, allCorrect };
       });
 
+      updateStats();
       practiceAreaEl.hidden = true;
       resultAreaEl.hidden = false;
       resultContainerEl.innerHTML = '';
@@ -241,6 +299,11 @@
         const card = document.createElement('div');
         card.className = 'practice-card';
         card.innerHTML = '<div class="english">' + escapeHtml(q.english) + '</div>';
+        const s = sessionStats[q.id];
+        const statsEl = document.createElement('span');
+        statsEl.className = 'question-stats';
+        statsEl.textContent = s.correct + ' / ' + s.attempts;
+        card.appendChild(statsEl);
         const foreign = document.createElement('div');
         foreign.className = 'foreign';
         let ai = 0;
@@ -310,6 +373,7 @@
         unit = null;
         allQuestions = [];
         noUnitEl.hidden = false;
+        statsBarEl.hidden = true;
         practiceAreaEl.hidden = true;
         resultAreaEl.hidden = true;
         noUnitEl.textContent = 'Select a unit to load its sentences.';
@@ -321,6 +385,8 @@
         unit = await res.json();
         allQuestions = flattenUnit(unit);
         sessionStats = {};
+        statsBarEl.hidden = false;
+        updateStats();
         noUnitEl.hidden = true;
         startNextSet();
       } catch (err) {
