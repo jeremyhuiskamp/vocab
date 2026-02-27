@@ -220,7 +220,7 @@
     }
 
     function emptySentence() {
-      return { fragments: [{ text: '', target: true }], english: '' };
+      return { fragments: [{ text: '', is_target: true }], english: '' };
     }
 
     function collectCard(cardEl) {
@@ -442,7 +442,7 @@
         word: e.word,
         target_language: e.target_language,
         sentences: e.sentences.filter(s =>
-          s.fragments.some(f => f.target) && s.fragments.some(f => f.text.trim() !== '')
+          s.fragments.some(f => f.is_target) && s.fragments.some(f => f.text.trim() !== '')
         )
       }));
       setSaveResult('Saving…');
@@ -479,7 +479,7 @@
             ...s,
             fragments: s.fragments.map(f => ({
               text: f.text,
-              target: f.target ?? f.is_target ?? false
+              is_target: f.target ?? f.is_target ?? false
             }))
           }))
         }));

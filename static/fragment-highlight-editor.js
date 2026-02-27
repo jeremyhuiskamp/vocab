@@ -56,7 +56,7 @@ class FragmentHighlightEditor extends LitElement {
       border-radius: 2px;
       box-shadow: 0 0 0 2px var(--accent, currentColor);
     }
-    .w.target {
+    .w.is_target {
       border-bottom: 2px solid var(--accent, currentColor);
       padding-bottom: 1px;
     }
@@ -85,7 +85,7 @@ class FragmentHighlightEditor extends LitElement {
     let m;
     while ((m = re.exec(str)) !== null) {
       const text = m[0];
-      result.push({ text, target: false, isWord: /[\p{L}\p{N}]/u.test(text) });
+      result.push({ text, is_target: false, isWord: /[\p{L}\p{N}]/u.test(text) });
     }
     return result;
   }
@@ -106,12 +106,12 @@ class FragmentHighlightEditor extends LitElement {
         const prevEndsWithSpace = /\s$/.test(prevText);
         const nextStartsWithPunct = !/[\p{L}\p{N}]/u.test(nextChar);
         if (!prevEndsWithSpace && !nextStartsWithPunct) {
-          result.push({ text: ' ', target: false, isWord: false });
+          result.push({ text: ' ', is_target: false, isWord: false });
         }
       }
 
       for (const t of toks) {
-        t.target = !!(frag.target && t.isWord);
+        t.is_target = !!(frag.is_target && t.isWord);
         result.push(t);
       }
     }
@@ -121,11 +121,11 @@ class FragmentHighlightEditor extends LitElement {
   _fragmentsFromTokens(toks) {
     if (!toks.length) return [];
     const frags = [];
-    let cur = { text: toks[0].text, target: !!(toks[0].target && toks[0].isWord) };
+    let cur = { text: toks[0].text, is_target: !!(toks[0].is_target && toks[0].isWord) };
     for (let i = 1; i < toks.length; i++) {
-      const tgt = !!(toks[i].target && toks[i].isWord);
-      if (tgt === cur.target) { cur.text += toks[i].text; }
-      else { frags.push(cur); cur = { text: toks[i].text, target: tgt }; }
+      const tgt = !!(toks[i].is_target && toks[i].isWord);
+      if (tgt === cur.is_target) { cur.text += toks[i].text; }
+      else { frags.push(cur); cur = { text: toks[i].text, is_target: tgt }; }
     }
     frags.push(cur);
     return frags.filter(f => f.text.length > 0);
@@ -151,7 +151,7 @@ class FragmentHighlightEditor extends LitElement {
     const oldHL = new Set();
     let pos = 0;
     for (const t of this._tokens) {
-      if (t.target && t.isWord) for (let i = 0; i < t.text.length; i++) oldHL.add(pos + i);
+      if (t.is_target && t.isWord) for (let i = 0; i < t.text.length; i++) oldHL.add(pos + i);
       pos += t.text.length;
     }
 
@@ -159,7 +159,7 @@ class FragmentHighlightEditor extends LitElement {
     while (pre < oldText.length && pre < newText.length && oldText[pre] === newText[pre]) pre++;
     let suf = 0;
     const maxSuf = Math.min(oldText.length - pre, newText.length - pre);
-    while (suf < maxSuf && oldText[oldText.length-1-suf] === newText[newText.length-1-suf]) suf++;
+    while (suf < maxSuf && oldText[oldText.length - 1 - suf] === newText[newText.length - 1 - suf]) suf++;
 
     const newToks = this._tokenize(newText);
     pos = 0;
@@ -167,12 +167,12 @@ class FragmentHighlightEditor extends LitElement {
       if (t.isWord) {
         const end = pos + t.text.length;
         if (end <= pre && [...Array(t.text.length).keys()].every(i => oldHL.has(pos + i)))
-          t.target = true;
+          t.is_target = true;
         const fromEnd = newText.length - end;
         if (fromEnd < suf) {
           const shift = oldText.length - newText.length;
           if ([...Array(t.text.length).keys()].every(i => oldHL.has(pos + i + shift)))
-            t.target = true;
+            t.is_target = true;
         }
       }
       pos += t.text.length;
@@ -183,7 +183,7 @@ class FragmentHighlightEditor extends LitElement {
   }
 
   _onClick(i) {
-    this._tokens = this._tokens.map((t, j) => j === i ? { ...t, target: !t.target } : t);
+    this._tokens = this._tokens.map((t, j) => j === i ? { ...t, is_target: !t.is_target } : t);
     this._dispatch();
   }
 
@@ -207,17 +207,17 @@ class FragmentHighlightEditor extends LitElement {
         <span class="label">Select blanks</span>
         <div id="render" role="group" aria-label="Select blanks" tabindex="-1">
           ${this._tokens.map((tok, i) => tok.isWord
-            ? html`<span
+      ? html`<span
                 data-i=${i}
-                class="w ${tok.target ? 'target' : ''}"
+                class="w ${tok.is_target ? 'is_target' : ''}"
                 tabindex="0"
                 role="button"
-                aria-pressed=${tok.target ? 'true' : 'false'}
+                aria-pressed=${tok.is_target ? 'true' : 'false'}
                 @click=${() => this._onClick(i)}
                 @keydown=${e => this._onKeyDown(e, i)}
               >${tok.text}</span>`
-            : html`<span>${tok.text}</span>`
-          )}
+      : html`<span>${tok.text}</span>`
+    )}
         </div>
       </div>
     `;
