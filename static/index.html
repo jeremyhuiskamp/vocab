@@ -219,6 +219,20 @@
       saveResultEl.className = 'status' + (type ? ' ' + type : '');
     }
 
+    let dirty = false;
+
+    function markDirty() {
+      if (!dirty) {
+        dirty = true;
+        setSaveResult('Unsaved changes');
+      }
+    }
+
+    function markClean() {
+      dirty = false;
+    }
+
+
     function emptySentence() {
       return { fragments: [{ text: '', is_target: true }], english: '' };
     }
@@ -260,6 +274,7 @@
         if (idx >= 0 && idx < sent.length) {
           sent.splice(idx, 1);
           renderSentencesList();
+          markDirty();
         }
       });
       const copyBtn = document.createElement('button');
@@ -271,6 +286,7 @@
         const collected = collectCard(card);
         currentSentences().splice(index + 1, 0, collected);
         renderSentencesList();
+        markDirty();
       });
       actions.appendChild(rejectBtn);
       actions.appendChild(copyBtn);
@@ -297,7 +313,8 @@
       englishRow.appendChild(englishInput);
       card.appendChild(englishRow);
 
-      editor.addEventListener('change', () => { updateStateFromList(); });
+      editor.addEventListener('change', () => { updateStateFromList(); markDirty(); });
+      englishInput.addEventListener('input', markDirty);
 
       return card;
     }
@@ -365,6 +382,7 @@
         sectionEl.hidden = false;
         wordSelectorRow.hidden = false;
         setStatus('');
+        markDirty();
       } catch (e) {
         setStatus(e.message || 'Request failed', 'error');
       } finally {
@@ -429,6 +447,7 @@
       renderSentencesList();
       sectionEl.hidden = false;
       wordSelectorRow.hidden = false;
+      markDirty();
     });
 
     saveBtn.addEventListener('click', async () => {
@@ -458,6 +477,7 @@
         }
         const data = await res.json();
         state.unitSlug = slugify(unitName);
+        markClean();
         setSaveResult('Saved: ' + data.path, 'success');
       } catch (e) {
         setSaveResult(e.message || 'Save failed', 'error');
@@ -490,10 +510,14 @@
         renderSentencesList();
         sectionEl.hidden = state.entries.length === 0;
         wordSelectorRow.hidden = state.entries.length === 0;
+        markClean();
+        setSaveResult('');
       } catch (e) {
         setStatus(e.message || 'Load failed', 'error');
       }
     });
+
+    unitNameEl.addEventListener('input', markDirty);
 
     wordSelectEl.addEventListener('change', () => {
       updateStateFromList();

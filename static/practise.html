@@ -30,6 +30,10 @@
       margin-bottom: 1rem;
     }
 
+    .practice-card.incorrect {
+      border-color: var(--danger);
+    }
+
     .question-stats {
       position: absolute;
       top: 0.6rem;
@@ -52,6 +56,7 @@
     }
 
     .practice-card .foreign .gap {
+      flex: none;
       min-width: 8rem;
       padding: 0.4rem 0.5rem;
       font-size: 1rem;
@@ -137,7 +142,7 @@
     </div>
     <div id="result-area" hidden>
       <div id="result-container"></div>
-      <p class="next-hint">Press Enter for next 5 questions.</p>
+      <p class="next-hint">Press Enter, Space, or Tab for next 5 questions.</p>
     </div>
   </div>
 
@@ -206,15 +211,16 @@
      * Tweak this single function to change ranking behaviour.
      */
     function getQuestionPriority(question, stats) {
-      const s = stats[question.id] || { attempts: 0, correct: 0 };
+      const s = stats[question.id] || { attempts: 0, correct: 0, recent: [] };
       const FUZZ = 5;
       const fuzz = Math.random() * FUZZ;
 
       if (s.attempts === 0) {
         return 1000 + fuzz;
       }
-      const correctRate = s.correct / s.attempts;
-      const lowScoreBonus = (1 - correctRate) * 100;
+      const recentWrong = s.recent.filter(r => !r).length;
+      const recentCorrectRate = s.recent.length > 0 ? (s.recent.length - recentWrong) / s.recent.length : 0;
+      const lowScoreBonus = (1 - recentCorrectRate) * 100;
       const fewAttemptsBonus = 10 / (s.attempts + 1);
       return lowScoreBonus + fewAttemptsBonus + fuzz;
     }
@@ -267,8 +273,29 @@
       });
 
       submitBtn.tabIndex = tabIndexCounter;
-      const firstInput = questionsContainerEl.querySelector('input.gap');
-      if (firstInput) firstInput.focus();
+      const allInputs = Array.from(questionsContainerEl.querySelectorAll('input.gap'));
+      if (allInputs.length > 0) {
+        allInputs[0].focus();
+        allInputs[allInputs.length - 1].addEventListener('keydown', (e) => {
+          if (e.key === 'Tab' && !e.shiftKey && allInputs.every(inp => inp.value.trim() !== '')) {
+            e.preventDefault();
+            gradeAndShowResult();
+          }
+        });
+        allInputs.forEach((inp, i) => {
+          inp.addEventListener('keydown', (e) => {
+            if (e.key !== ' ' || inp.value.trim() === '') return;
+            e.preventDefault();
+            if (i < allInputs.length - 1) {
+              allInputs[i + 1].focus();
+            } else if (allInputs.every(inp => inp.value.trim() !== '')) {
+              gradeAndShowResult();
+            } else {
+              submitBtn.focus();
+            }
+          });
+        });
+      }
     }
 
     function escapeHtml(s) {
@@ -290,9 +317,11 @@
           if (!correct) allCorrect = false;
           answers.push({ value, correct, expected: frag.text });
         });
-        const stat = sessionStats[q.id] || { attempts: 0, correct: 0 };
+        const stat = sessionStats[q.id] || { attempts: 0, correct: 0, recent: [] };
         stat.attempts += 1;
         if (allCorrect) stat.correct += 1;
+        stat.recent.push(allCorrect);
+        if (stat.recent.length > 5) stat.recent.shift();
         sessionStats[q.id] = stat;
         return { q, answers, allCorrect };
       });
@@ -304,7 +333,7 @@
 
       results.forEach(({ q, answers, allCorrect }) => {
         const card = document.createElement('div');
-        card.className = 'practice-card';
+        card.className = 'practice-card' + (allCorrect ? '' : ' incorrect');
         card.innerHTML = '<div class="english">' + escapeHtml(q.english) + '</div>';
         const s = sessionStats[q.id];
         const statsEl = document.createElement('span');
@@ -342,7 +371,7 @@
     }
 
     function onResultKeydown(e) {
-      if (e.key !== 'Enter' || e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (!['Enter', ' ', 'Tab'].includes(e.key) || e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       e.preventDefault();
       document.removeEventListener('keydown', onResultKeydown);
       startNextSet();
