@@ -146,7 +146,10 @@
     </div>
   </div>
 
-  <script>
+  <script type="module">
+    import { flattenUnit, getQuestionPriority, selectNextQuestions, gradeAnswers } from './practise-logic.js';
+    import { escapeHtml } from './utils.js';
+
     const unitSelectEl = document.getElementById('unit-select');
     const noUnitEl = document.getElementById('no-unit');
     const statsBarEl = document.getElementById('stats-bar');
@@ -185,51 +188,6 @@
       statAnsweredLabelEl.textContent = 'Answered ' + threshold + '×';
       statAnsweredEl.textContent = answered;
       statNeedsWorkEl.textContent = needsWork;
-    }
-
-    function flattenUnit(unitData) {
-      const list = [];
-      (unitData.entries || []).forEach((entry, ei) => {
-        (entry.sentences || []).forEach((sent, si) => {
-          const targetFragments = sent.fragments.filter(f => f.is_target);
-          if (targetFragments.length === 0) return;
-          list.push({
-            id: `${ei}-${si}`,
-            entryIndex: ei,
-            sentenceIndex: si,
-            english: sent.english,
-            fragments: sent.fragments,
-            targetFragments
-          });
-        });
-      });
-      return list;
-    }
-
-    /**
-     * Priority for choosing the next questions. Higher = more likely to be picked.
-     * Tweak this single function to change ranking behaviour.
-     */
-    function getQuestionPriority(question, stats) {
-      const s = stats[question.id] || { attempts: 0, correct: 0, recent: [] };
-      const FUZZ = 5;
-      const fuzz = Math.random() * FUZZ;
-
-      if (s.attempts === 0) {
-        return 1000 + fuzz;
-      }
-      const recentWrong = s.recent.filter(r => !r).length;
-      const recentCorrectRate = s.recent.length > 0 ? (s.recent.length - recentWrong) / s.recent.length : 0;
-      const lowScoreBonus = (1 - recentCorrectRate) * 100;
-      const fewAttemptsBonus = 10 / (s.attempts + 1);
-      return lowScoreBonus + fewAttemptsBonus + fuzz;
-    }
-
-    function selectNextQuestions(questions, stats, count) {
-      if (questions.length === 0) return [];
-      const withPriority = questions.map(q => ({ q, p: getQuestionPriority(q, stats) }));
-      withPriority.sort((a, b) => b.p - a.p);
-      return withPriority.slice(0, Math.min(count, questions.length)).map(x => x.q);
     }
 
     function renderQuestionView() {
@@ -298,32 +256,11 @@
       }
     }
 
-    function escapeHtml(s) {
-      const div = document.createElement('div');
-      div.textContent = s;
-      return div.innerHTML;
-    }
-
     function gradeAndShowResult() {
-      const results = currentSet.map(q => {
-        const inputs = questionsContainerEl.querySelectorAll(`input[data-question-id="${q.id}"]`);
-        const answers = [];
-        let allCorrect = true;
-        q.fragments.forEach((frag, fi) => {
-          if (!frag.is_target) return;
-          const input = Array.from(inputs).find(inp => inp.dataset.fragIndex === String(fi));
-          const value = input ? input.value.trim() : '';
-          const correct = value === frag.text.trim();
-          if (!correct) allCorrect = false;
-          answers.push({ value, correct, expected: frag.text });
-        });
-        const stat = sessionStats[q.id] || { attempts: 0, correct: 0, recent: [] };
-        stat.attempts += 1;
-        if (allCorrect) stat.correct += 1;
-        stat.recent.push(allCorrect);
-        if (stat.recent.length > 5) stat.recent.shift();
-        sessionStats[q.id] = stat;
-        return { q, answers, allCorrect };
+      const results = gradeAnswers(currentSet, sessionStats, (questionId, fragIndex) => {
+        const inputs = questionsContainerEl.querySelectorAll(`input[data-question-id="${questionId}"]`);
+        const input = Array.from(inputs).find(inp => inp.dataset.fragIndex === String(fragIndex));
+        return input ? input.value.trim() : '';
       });
 
       updateStats();

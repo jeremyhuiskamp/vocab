@@ -1,0 +1,17 @@
+version: '3'
+
+tasks:
+  dev:
+    cmds:
+      - uv run uvicorn app.main:app --reload
+
+  test:
+    deps: [test:frontend, test:backend]
+
+  test:frontend:
+    cmds:
+      - for f in static/*.test.js; do grep -q 'runCLI' "$f" && deno run "$f"; done
+
+  test:backend:
+    cmds:
+      - uv run pytest app/ || test $? -eq 5

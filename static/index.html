@@ -177,6 +177,8 @@
 
   <script type="module" src="fragment-highlight-editor.js"></script>
   <script type="module">
+    import { slugify, emptySentence } from './utils.js';
+
     const unitNameEl = document.getElementById('unit-name');
     const loadUnitEl = document.getElementById('load-unit');
     const wordIdeasDescEl = document.getElementById('word-ideas-desc');
@@ -232,10 +234,6 @@
       dirty = false;
     }
 
-
-    function emptySentence() {
-      return { fragments: [{ text: '', is_target: true }], english: '' };
-    }
 
     function collectCard(cardEl) {
       const editor = cardEl.querySelector('fragment-highlight-editor');
@@ -325,10 +323,6 @@
         const title = card.querySelector('.card-title');
         if (title) title.textContent = 'Sentence ' + (i + 1);
       });
-    }
-
-    function slugify(name) {
-      return name.toLowerCase().trim().replace(/[^a-z0-9\u00c0-\u024f]+/g, '-').replace(/^-|-$/g, '') || 'unit';
     }
 
     function renderWordSelector() {
