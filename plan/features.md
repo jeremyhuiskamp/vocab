@@ -2,10 +2,6 @@
 
 - authentication for the admin
 
-- more wysiwyg editor
-  - separate entries for each section of the sentence is too tedious
-  - ideally just a text box with the ability to underline
-
 - stats while practising
   - total number of sentences in unit
   - sentences answered at least once
@@ -49,3 +45,11 @@
     - more expensive, slower, harder to test
     - but super interesting!
   - probably works best with reading the foreign language
+
+- paste in a sentence and turn it into an exercise
+  - auto-translate
+  - somehow pick out the interesting word?
+
+- text box to allow a "hint" to gemini while generating sentences
+  - eg, prefer a particular tense
+  - eg, use a particular sense of the word
