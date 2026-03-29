@@ -10,7 +10,7 @@ tasks:
 
   test:frontend:
     cmds:
-      - /opt/homebrew/bin/deno run static/run-tests.js
+      - /opt/homebrew/bin/deno run static/test/run-tests.js
 
   test:backend:
     cmds:
