@@ -1,4 +1,3 @@
-import { runCLI } from './test-harness.js';
 import { slugify, escapeHtml, emptySentence } from './utils.js';
 
 export const name = 'utils';
@@ -62,4 +61,3 @@ export async function run(h) {
   });
 }
 
-await runCLI(name, run);

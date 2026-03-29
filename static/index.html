@@ -178,6 +178,7 @@
   <script type="module" src="fragment-highlight-editor.js"></script>
   <script type="module">
     import { slugify, emptySentence } from './utils.js';
+    import { normalizeLoadedUnit, buildSavePayload } from './create-logic.js';
 
     const unitNameEl = document.getElementById('unit-name');
     const loadUnitEl = document.getElementById('load-unit');
@@ -451,13 +452,7 @@
         setSaveResult('Enter a unit name.', 'error');
         return;
       }
-      const entries = state.entries.map(e => ({
-        word: e.word,
-        target_language: e.target_language,
-        sentences: e.sentences.filter(s =>
-          s.fragments.some(f => f.is_target) && s.fragments.some(f => f.text.trim() !== '')
-        )
-      }));
+      const entries = buildSavePayload(state.entries);
       setSaveResult('Saving…');
       try {
         const res = await fetch('/vocab/save', {
@@ -485,19 +480,11 @@
         const res = await fetch('/vocab/units/' + encodeURIComponent(slug));
         if (!res.ok) throw new Error('Failed to load unit');
         const unit = await res.json();
-        state.unitName = unit.name;
+        const normalized = normalizeLoadedUnit(unit);
+        state.unitName = normalized.name;
         state.unitSlug = slug;
-        state.entries = (unit.entries || []).map(e => ({
-          ...e,
-          sentences: e.sentences.map(s => ({
-            ...s,
-            fragments: s.fragments.map(f => ({
-              text: f.text,
-              is_target: f.target ?? f.is_target ?? false
-            }))
-          }))
-        }));
-        state.selectedEntryIndex = state.entries.length > 0 ? 0 : 0;
+        state.entries = normalized.entries;
+        state.selectedEntryIndex = 0;
         unitNameEl.value = unit.name;
         loadUnitEl.value = slug;
         renderWordSelector();

@@ -10,7 +10,7 @@ tasks:
 
   test:frontend:
     cmds:
-      - for f in static/*.test.js; do grep -q 'runCLI' "$f" && deno run "$f"; done
+      - /opt/homebrew/bin/deno run static/run-tests.js
 
   test:backend:
     cmds:

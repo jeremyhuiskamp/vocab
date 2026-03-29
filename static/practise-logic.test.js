@@ -1,4 +1,3 @@
-import { runCLI } from './test-harness.js';
 import { flattenUnit, getQuestionPriority, selectNextQuestions, gradeAnswers, computeStats } from './practise-logic.js';
 
 export const name = 'practise-logic';
@@ -271,4 +270,3 @@ export async function run(h) {
   });
 }
 
-await runCLI(name, run);

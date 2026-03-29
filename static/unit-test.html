@@ -13,28 +13,31 @@
     .fail    { background: #f8d7da; color: #721c24; }
     .detail  { opacity: 0.8; margin: 2px 0 4px 1.5em; font-size: 0.85em; }
     .section { font-style: italic; margin: 0.5rem 0 0.2rem 0.5em; font-size: 0.9em; }
-    #summary { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #ccc;
-               font-weight: bold; }
+    #summary-top {
+      position: sticky; top: 0;
+      padding: 0.5rem 0.75rem;
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+    #summary-top.pass { background: #d4edda; color: #155724; }
+    #summary-top.fail { background: #f8d7da; color: #721c24; }
+    #summary-bottom { font-weight: bold; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #ccc; }
   </style>
 </head>
 <body>
   <h1>Unit Tests</h1>
+  <div id="summary-top"></div>
   <div id="results"></div>
-  <div id="summary"></div>
+  <div id="summary-bottom"></div>
 
   <script type="module">
     // Import component (registers the custom element) and test suites
     import './fragment-highlight-editor.js';
     import { Harness } from './test-harness.js';
-    import * as suite1 from './fragment-highlight-editor.test.js';
-    import * as suite2 from './utils.test.js';
-    import * as suite3 from './practise-logic.test.js';
+    import { cliSuites, domSuites } from './test-suites.js';
 
-    const suites = [
-      suite1,
-      suite2,
-      suite3,
-    ];
+    const suites = [...cliSuites, ...domSuites];
 
     // Wait for custom elements to be defined before running tests
     await customElements.whenDefined('fragment-highlight-editor');
@@ -48,8 +51,9 @@
         h.results.push({ ok: false, description: '(suite crashed)', actual: String(err), expected: '(no error)' });
       }
 
-      const suitePass = h.results.filter(r => r.ok).length;
-      const suiteFail = h.results.filter(r => !r.ok).length;
+      const testResults = h.results.filter(r => r.type !== 'section');
+      const suitePass = testResults.filter(r => r.ok).length;
+      const suiteFail = testResults.filter(r => !r.ok).length;
       totalPass += suitePass;
       totalFail += suiteFail;
 
@@ -58,7 +62,7 @@
 
       const nameEl = document.createElement('div');
       nameEl.className = 'suite-name';
-      nameEl.textContent = `${suite.name}  (${suitePass}/${h.results.length})`;
+      nameEl.textContent = `${suite.name}  (${suitePass}/${testResults.length})`;
       suiteEl.appendChild(nameEl);
 
       for (const r of h.results) {
@@ -84,8 +88,11 @@
       container.appendChild(suiteEl);
     }
 
-    document.getElementById('summary').textContent =
-      `${totalPass + totalFail} tests — ${totalPass} passed, ${totalFail} failed.`;
+    const summaryText = `${totalPass + totalFail} tests — ${totalPass} passed, ${totalFail} failed.`;
+    const summaryTop = document.getElementById('summary-top');
+    summaryTop.textContent = summaryText;
+    summaryTop.className = totalFail > 0 ? 'fail' : 'pass';
+    document.getElementById('summary-bottom').textContent = summaryText;
   </script>
 </body>
 </html>
