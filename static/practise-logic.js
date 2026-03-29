@@ -44,6 +44,29 @@ export function selectNextQuestions(questions, stats, count) {
 }
 
 /**
+ * Compute summary stats for the stats bar.
+ * Returns { total, threshold, answered, needsWork }.
+ * threshold is minAttempts + 1 across all questions.
+ */
+export function computeStats(questions, sessionStats) {
+  const total = questions.length;
+  if (total === 0) return { total: 0, threshold: 1, answered: 0, needsWork: 0 };
+
+  const minAttempts = Math.min(...questions.map(q => sessionStats[q.id]?.attempts || 0));
+  const threshold = minAttempts + 1;
+
+  let answered = 0;
+  let needsWork = 0;
+  questions.forEach(q => {
+    const s = sessionStats[q.id];
+    if ((s?.attempts || 0) >= threshold) answered++;
+    if (s && s.attempts > 0 && s.correct / s.attempts < 0.75) needsWork++;
+  });
+
+  return { total, threshold, answered, needsWork };
+}
+
+/**
  * Grade a set of questions. Mutates sessionStats in place.
  * getInputValue(questionId, fragIndex) should return the trimmed user answer for that fragment.
  * Returns an array of { q, answers, allCorrect }.

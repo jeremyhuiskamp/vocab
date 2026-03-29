@@ -12,6 +12,7 @@
     .pass    { background: #d4edda; color: #155724; }
     .fail    { background: #f8d7da; color: #721c24; }
     .detail  { opacity: 0.8; margin: 2px 0 4px 1.5em; font-size: 0.85em; }
+    .section { font-style: italic; margin: 0.5rem 0 0.2rem 0.5em; font-size: 0.9em; }
     #summary { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #ccc;
                font-weight: bold; }
   </style>
@@ -61,6 +62,13 @@
       suiteEl.appendChild(nameEl);
 
       for (const r of h.results) {
+        if (r.type === 'section') {
+          const sectionEl = document.createElement('div');
+          sectionEl.className = 'section';
+          sectionEl.textContent = r.name;
+          suiteEl.appendChild(sectionEl);
+          continue;
+        }
         const row = document.createElement('div');
         row.className = 'result ' + (r.ok ? 'pass' : 'fail');
         row.textContent = (r.ok ? '✓ ' : '✗ ') + r.description;

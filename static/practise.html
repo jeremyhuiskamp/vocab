@@ -147,7 +147,7 @@
   </div>
 
   <script type="module">
-    import { flattenUnit, getQuestionPriority, selectNextQuestions, gradeAnswers } from './practise-logic.js';
+    import { flattenUnit, getQuestionPriority, selectNextQuestions, gradeAnswers, computeStats } from './practise-logic.js';
     import { escapeHtml } from './utils.js';
 
     const unitSelectEl = document.getElementById('unit-select');
@@ -170,20 +170,7 @@
     let tabIndexCounter = 1;
 
     function updateStats() {
-      const total = allQuestions.length;
-
-      const minAttempts = allQuestions.length === 0 ? 0
-        : Math.min(...allQuestions.map(q => sessionStats[q.id]?.attempts || 0));
-      const threshold = minAttempts + 1;
-
-      let answered = 0;
-      let needsWork = 0;
-      allQuestions.forEach(q => {
-        const s = sessionStats[q.id];
-        if ((s?.attempts || 0) >= threshold) answered++;
-        if (s && s.attempts > 0 && s.correct / s.attempts < 0.75) needsWork++;
-      });
-
+      const { total, threshold, answered, needsWork } = computeStats(allQuestions, sessionStats);
       statTotalEl.textContent = total;
       statAnsweredLabelEl.textContent = 'Answered ' + threshold + '×';
       statAnsweredEl.textContent = answered;

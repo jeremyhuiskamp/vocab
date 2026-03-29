@@ -8,23 +8,31 @@
 export async function runCLI(suiteName, runFn) {
   if (typeof document !== 'undefined') return;
   let passed = 0, failed = 0;
-  const h = {
-    async test(description, fn) {
-      try {
-        await fn((actual, expected) => {
-          if (JSON.stringify(actual) !== JSON.stringify(expected))
-            throw new Error(`expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
-        });
-        console.log(`  ✓ ${description}`);
-        passed++;
-      } catch (err) {
-        console.log(`  ✗ ${description}: ${err.message}`);
-        failed++;
+
+  function makeH(indent) {
+    return {
+      async test(description, fn) {
+        try {
+          await fn((actual, expected) => {
+            if (JSON.stringify(actual) !== JSON.stringify(expected))
+              throw new Error(`expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
+          });
+          console.log(`${indent}✓ ${description}`);
+          passed++;
+        } catch (err) {
+          console.log(`${indent}✗ ${description}: ${err.message}`);
+          failed++;
+        }
+      },
+      async describe(name, fn) {
+        console.log(`${indent}${name}`);
+        await fn(makeH(indent + '  '));
       }
-    }
-  };
+    };
+  }
+
   console.log(`\n${suiteName}`);
-  await runFn(h);
+  await runFn(makeH('  '));
   console.log(`  ${passed + failed} tests — ${passed} passed, ${failed} failed`);
   if (failed > 0) process.exit(1);
 }
@@ -33,6 +41,7 @@ export class Harness {
   constructor() {
     this.results = [];
     this._container = null;
+    this._section = null;
   }
 
   getContainer() {
@@ -43,6 +52,14 @@ export class Harness {
       document.body.appendChild(this._container);
     }
     return this._container;
+  }
+
+  async describe(name, fn) {
+    this.results.push({ type: 'section', name });
+    const prev = this._section;
+    this._section = name;
+    await fn(this);
+    this._section = prev;
   }
 
   // Runs fn, passing it a bound assert that always records `description`.
