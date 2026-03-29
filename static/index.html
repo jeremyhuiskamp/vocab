@@ -178,7 +178,7 @@
   <script type="module" src="fragment-highlight-editor.js"></script>
   <script type="module">
     import { slugify, emptySentence } from './utils.js';
-    import { normalizeLoadedUnit, buildSavePayload } from './create-logic.js';
+    import { buildSavePayload } from './create-logic.js';
 
     const unitNameEl = document.getElementById('unit-name');
     const loadUnitEl = document.getElementById('load-unit');
@@ -480,10 +480,9 @@
         const res = await fetch('/vocab/units/' + encodeURIComponent(slug));
         if (!res.ok) throw new Error('Failed to load unit');
         const unit = await res.json();
-        const normalized = normalizeLoadedUnit(unit);
-        state.unitName = normalized.name;
+        state.unitName = unit.name;
         state.unitSlug = slug;
-        state.entries = normalized.entries;
+        state.entries = unit.entries;
         state.selectedEntryIndex = 0;
         unitNameEl.value = unit.name;
         loadUnitEl.value = slug;
