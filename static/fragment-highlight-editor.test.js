@@ -1,3 +1,5 @@
+import './fragment-highlight-editor.js';
+
 export const name = 'fragment-highlight-editor';
 
 // ── Helpers ───────────────────────────────────────────

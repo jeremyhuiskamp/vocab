@@ -22,6 +22,7 @@
     }
 
     .practice-card {
+      display: block;
       position: relative;
       background: var(--surface);
       border: 1px solid var(--border);
@@ -148,7 +149,7 @@
 
   <script type="module">
     import { flattenUnit, getQuestionPriority, selectNextQuestions, gradeAnswers, computeStats } from './practise-logic.js';
-    import { escapeHtml } from './utils.js';
+    import './practise-card.js';
 
     const unitSelectEl = document.getElementById('unit-select');
     const noUnitEl = document.getElementById('no-unit');
@@ -167,7 +168,6 @@
     let allQuestions = [];
     let sessionStats = {};
     let currentSet = [];
-    let tabIndexCounter = 1;
 
     function updateStats() {
       const { total, threshold, answered, needsWork } = computeStats(allQuestions, sessionStats);
@@ -177,47 +177,22 @@
       statNeedsWorkEl.textContent = needsWork;
     }
 
-    function renderQuestionView() {
+    async function renderQuestionView() {
       resultAreaEl.hidden = true;
       practiceAreaEl.hidden = false;
       questionsContainerEl.innerHTML = '';
-      tabIndexCounter = 1;
 
-      currentSet.forEach((q, qIdx) => {
-        const card = document.createElement('div');
-        card.className = 'practice-card';
-        card.innerHTML = '<div class="english">' + escapeHtml(q.english) + '</div>';
-        const s = sessionStats[q.id];
-        if (s && s.attempts > 0) {
-          const statsEl = document.createElement('span');
-          statsEl.className = 'question-stats';
-          statsEl.textContent = s.correct + ' / ' + s.attempts;
-          card.appendChild(statsEl);
-        }
-        const foreign = document.createElement('div');
-        foreign.className = 'foreign';
-        q.fragments.forEach((frag, fi) => {
-          if (frag.is_target) {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.className = 'gap';
-            input.placeholder = '…';
-            input.dataset.questionId = q.id;
-            input.dataset.fragIndex = String(fi);
-            input.tabIndex = tabIndexCounter++;
-            foreign.appendChild(input);
-          } else {
-            const span = document.createElement('span');
-            span.className = 'text';
-            span.textContent = frag.text;
-            foreign.appendChild(span);
-          }
-        });
-        card.appendChild(foreign);
+      currentSet.forEach(q => {
+        const card = document.createElement('practice-card');
+        card.question = q;
+        card.stat = sessionStats[q.id];
         questionsContainerEl.appendChild(card);
       });
 
-      submitBtn.tabIndex = tabIndexCounter;
+      await Promise.all(
+        Array.from(questionsContainerEl.querySelectorAll('practice-card')).map(c => c.updateComplete)
+      );
+
       const allInputs = Array.from(questionsContainerEl.querySelectorAll('input.gap'));
       if (allInputs.length > 0) {
         allInputs[0].focus();
@@ -255,39 +230,12 @@
       resultAreaEl.hidden = false;
       resultContainerEl.innerHTML = '';
 
-      results.forEach(({ q, answers, allCorrect }) => {
-        const card = document.createElement('div');
-        card.className = 'practice-card' + (allCorrect ? '' : ' incorrect');
-        card.innerHTML = '<div class="english">' + escapeHtml(q.english) + '</div>';
-        const s = sessionStats[q.id];
-        const statsEl = document.createElement('span');
-        statsEl.className = 'question-stats';
-        statsEl.textContent = s.correct + ' / ' + s.attempts;
-        card.appendChild(statsEl);
-        const foreign = document.createElement('div');
-        foreign.className = 'foreign';
-        let ai = 0;
-        q.fragments.forEach((frag) => {
-          if (frag.is_target) {
-            const a = answers[ai++];
-            const wrap = document.createElement('span');
-            wrap.className = 'result-feedback ' + (a.correct ? 'correct' : 'incorrect');
-            wrap.textContent = a.value || '(empty)';
-            if (!a.correct) {
-              const exp = document.createElement('span');
-              exp.className = 'expected';
-              exp.textContent = ' → ' + a.expected;
-              wrap.appendChild(exp);
-            }
-            foreign.appendChild(wrap);
-          } else {
-            const span = document.createElement('span');
-            span.className = 'text';
-            span.textContent = frag.text;
-            foreign.appendChild(span);
-          }
-        });
-        card.appendChild(foreign);
+      results.forEach(({ q, answers }) => {
+        const card = document.createElement('practice-card');
+        card.question = q;
+        card.stat = sessionStats[q.id];
+        card.mode = 'result';
+        card.answers = answers;
         resultContainerEl.appendChild(card);
       });
 

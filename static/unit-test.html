@@ -32,15 +32,10 @@
   <div id="summary-bottom"></div>
 
   <script type="module">
-    // Import component (registers the custom element) and test suites
-    import './fragment-highlight-editor.js';
     import { Harness } from './test-harness.js';
     import { cliSuites, domSuites } from './test-suites.js';
 
     const suites = [...cliSuites, ...domSuites];
-
-    // Wait for custom elements to be defined before running tests
-    await customElements.whenDefined('fragment-highlight-editor');
 
     const container = document.getElementById('results');
     let totalPass = 0, totalFail = 0;
