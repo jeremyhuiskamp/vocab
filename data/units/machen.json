@@ -1,0 +1,104 @@
+{
+  "name": "Machen",
+  "entries": [
+    {
+      "word": "nachmachen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Kinder lieben es, Tiergeräusche ",
+              "is_target": false
+            },
+            {
+              "text": "nachzumachen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Children love to imitate animal sounds."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Mein kleiner Bruder ",
+              "is_target": false
+            },
+            {
+              "text": "macht",
+              "is_target": true
+            },
+            {
+              "text": " immer alles seinem großen Bruder ",
+              "is_target": false
+            },
+            {
+              "text": "nach",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "My little brother always copies everything his older brother does."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Versuche nicht, seine Unterschrift ",
+              "is_target": false
+            },
+            {
+              "text": "nachzumachen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Don't try to forge his signature."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Das ist nur eine billige ",
+              "is_target": false
+            },
+            {
+              "text": "nachgemachte",
+              "is_target": true
+            },
+            {
+              "text": " Handtasche.",
+              "is_target": false
+            }
+          ],
+          "english": "That is just a cheap imitation handbag."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Kannst du meine Stimme ",
+              "is_target": false
+            },
+            {
+              "text": "nachmachen",
+              "is_target": true
+            },
+            {
+              "text": "?",
+              "is_target": false
+            }
+          ],
+          "english": "Can you mimic my voice?"
+        }
+      ]
+    }
+  ]
+}

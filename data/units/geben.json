@@ -1,0 +1,588 @@
+{
+  "name": "Geben",
+  "entries": [
+    {
+      "word": "angeben",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Er ",
+              "is_target": false
+            },
+            {
+              "text": "gibt",
+              "is_target": true
+            },
+            {
+              "text": " immer mit seinem neuen Auto ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He always shows off with his new car."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Bitte ",
+              "is_target": false
+            },
+            {
+              "text": "geben",
+              "is_target": true
+            },
+            {
+              "text": " Sie Ihre Adresse ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Please state your address."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er konnte den genauen Zeitpunkt des Unfalls nicht ",
+              "is_target": false
+            },
+            {
+              "text": "angeben",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He could not state the exact time of the accident."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Warum ",
+              "is_target": false
+            },
+            {
+              "text": "gibt",
+              "is_target": true
+            },
+            {
+              "text": " er immer ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ", alles zu wissen?",
+              "is_target": false
+            }
+          ],
+          "english": "Why does he always claim to know everything?"
+        }
+      ]
+    },
+    {
+      "word": "nachgeben",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Sie wollte zuerst nicht, aber am Ende musste sie ",
+              "is_target": false
+            },
+            {
+              "text": "nachgeben",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "She didn't want to at first, but in the end, she had to give in."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Der alte Stuhl würde bestimmt ",
+              "is_target": false
+            },
+            {
+              "text": "nachgeben",
+              "is_target": true
+            },
+            {
+              "text": ", wenn sich jemand daraufsetzt.",
+              "is_target": false
+            }
+          ],
+          "english": "The old chair would definitely give way if someone sat on it."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Manchmal muss man einfach dem Druck ",
+              "is_target": false
+            },
+            {
+              "text": "nachgeben",
+              "is_target": true
+            },
+            {
+              "text": ", um Frieden zu haben.",
+              "is_target": false
+            }
+          ],
+          "english": "Sometimes you just have to give in to the pressure to have peace."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Der Boden schien ein wenig ",
+              "is_target": false
+            },
+            {
+              "text": "nachzugeben",
+              "is_target": true
+            },
+            {
+              "text": ", als ich darüber ging.",
+              "is_target": false
+            }
+          ],
+          "english": "The floor seemed to give a little when I walked over it."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er weigerte sich, in der Diskussion auch nur einen Zentimeter ",
+              "is_target": false
+            },
+            {
+              "text": "nachzugeben",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He refused to concede even an inch in the discussion."
+        }
+      ]
+    },
+    {
+      "word": "zugeben",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Ich muss ",
+              "is_target": false
+            },
+            {
+              "text": "zugeben",
+              "is_target": true
+            },
+            {
+              "text": ", dass ich einen Fehler gemacht habe.",
+              "is_target": false
+            }
+          ],
+          "english": "I have to admit that I made a mistake."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er ",
+              "is_target": false
+            },
+            {
+              "text": "gab",
+              "is_target": true
+            },
+            {
+              "text": " ",
+              "is_target": false
+            },
+            {
+              "text": "zu",
+              "is_target": true
+            },
+            {
+              "text": ", die Kekse gegessen zu haben.",
+              "is_target": false
+            }
+          ],
+          "english": "He admitted to having eaten the cookies."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Wirst du endlich ",
+              "is_target": false
+            },
+            {
+              "text": "zugeben",
+              "is_target": true
+            },
+            {
+              "text": ", wer es getan hat?",
+              "is_target": false
+            }
+          ],
+          "english": "Will you finally admit who did it?"
+        },
+        {
+          "fragments": [
+            {
+              "text": "Gib",
+              "is_target": true
+            },
+            {
+              "text": " doch einfach ",
+              "is_target": false
+            },
+            {
+              "text": "zu",
+              "is_target": true
+            },
+            {
+              "text": "! Es ist leichter.",
+              "is_target": false
+            }
+          ],
+          "english": "Just admit it! It's easier."
+        }
+      ]
+    },
+    {
+      "word": "begeben",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Wir müssen uns sofort zum Treffpunkt ",
+              "is_target": false
+            },
+            {
+              "text": "begeben",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "We must go to the meeting point immediately."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Sie warnte ihn davor, ",
+              "is_target": false
+            },
+            {
+              "text": "sich",
+              "is_target": true
+            },
+            {
+              "text": " in eine solche Situation zu ",
+              "is_target": false
+            },
+            {
+              "text": "begeben",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "She warned him against putting himself in such a situation."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Nachdem die Sonne untergegangen war, ",
+              "is_target": false
+            },
+            {
+              "text": "begaben",
+              "is_target": true
+            },
+            {
+              "text": " ",
+              "is_target": false
+            },
+            {
+              "text": "sich",
+              "is_target": true
+            },
+            {
+              "text": " die Wanderer ins Tal.",
+              "is_target": false
+            }
+          ],
+          "english": "After the sun had set, the hikers descended into the valley."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Die Delegation wird ",
+              "is_target": false
+            },
+            {
+              "text": "sich",
+              "is_target": true
+            },
+            {
+              "text": " am Morgen zum Verhandlungsort ",
+              "is_target": false
+            },
+            {
+              "text": "begeben",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The delegation will proceed to the negotiation site in the morning."
+        }
+      ]
+    },
+    {
+      "word": "weitergeben",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Ich werde die Information an meinen Kollegen ",
+              "is_target": false
+            },
+            {
+              "text": "weitergeben",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "I will pass on the information to my colleague."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Kannst du bitte das Buch ",
+              "is_target": false
+            },
+            {
+              "text": "weitergeben",
+              "is_target": true
+            },
+            {
+              "text": "?",
+              "is_target": false
+            }
+          ],
+          "english": "Can you please pass on the book?"
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er ",
+              "is_target": false
+            },
+            {
+              "text": "gab",
+              "is_target": true
+            },
+            {
+              "text": " die Nachricht sofort ",
+              "is_target": false
+            },
+            {
+              "text": "weiter",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He immediately passed on the message."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Es ist wichtig, Wissen an die nächste Generation ",
+              "is_target": false
+            },
+            {
+              "text": "weiterzugeben",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "It is important to pass on knowledge to the next generation."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Gib",
+              "is_target": true
+            },
+            {
+              "text": " die Anweisungen bitte an alle ",
+              "is_target": false
+            },
+            {
+              "text": "weiter",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Please pass on the instructions to everyone."
+        }
+      ]
+    },
+    {
+      "word": "abgeben",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Bitte ",
+              "is_target": false
+            },
+            {
+              "text": "geben",
+              "is_target": true
+            },
+            {
+              "text": " Sie Ihre Hausaufgaben bis morgen ",
+              "is_target": false
+            },
+            {
+              "text": "ab",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Please hand in your homework by tomorrow."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Ich muss das Paket bei der Post ",
+              "is_target": false
+            },
+            {
+              "text": "abgeben",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "I have to drop off the package at the post office."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Der Heizkörper ",
+              "is_target": false
+            },
+            {
+              "text": "gibt",
+              "is_target": true
+            },
+            {
+              "text": " viel Wärme ",
+              "is_target": false
+            },
+            {
+              "text": "ab",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The radiator gives off a lot of heat."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er würde einen guten Lehrer ",
+              "is_target": false
+            },
+            {
+              "text": "abgeben",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He would make a good teacher."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Vergessen Sie nicht, Ihre Stimme ",
+              "is_target": false
+            },
+            {
+              "text": "abzugeben",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "Don't forget to cast your vote."
+        }
+      ]
+    }
+  ]
+}

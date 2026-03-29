@@ -819,6 +819,96 @@
           "english": "The government orders new measures to combat the pandemic."
         }
       ]
+    },
+    {
+      "word": "anliegen",
+      "target_language": "german",
+      "sentences": [
+        {
+          "fragments": [
+            {
+              "text": "Die Hose sollte nicht zu eng ",
+              "is_target": false
+            },
+            {
+              "text": "anliegen",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The trousers shouldn't fit too tightly."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Das Hemd ",
+              "is_target": false
+            },
+            {
+              "text": "liegt",
+              "is_target": true
+            },
+            {
+              "text": " gut ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The shirt fits well."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Mir ",
+              "is_target": false
+            },
+            {
+              "text": "liegt",
+              "is_target": true
+            },
+            {
+              "text": " die Umwelt sehr ",
+              "is_target": false
+            },
+            {
+              "text": "an",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "The environment is very important to me."
+        },
+        {
+          "fragments": [
+            {
+              "text": "Er fragte, ob das Buch an der Wand ",
+              "is_target": false
+            },
+            {
+              "text": "anliege",
+              "is_target": true
+            },
+            {
+              "text": ".",
+              "is_target": false
+            }
+          ],
+          "english": "He asked if the book was lying against the wall."
+        }
+      ]
     }
   ]
 }
